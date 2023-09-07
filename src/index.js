@@ -12,6 +12,7 @@ import {history} from "./services";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = setupStore();
+
 root.render(
     <Provider store={store}>
         <BrowserRouter history={history}>
