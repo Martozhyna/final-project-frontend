@@ -1,0 +1,33 @@
+.table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.th_list {
+    height: 35px;
+    background: linear-gradient(90deg, #845EC2, #B39CD0, #FBEAFF);;
+    color: white;
+}
+
+.tr_list{
+    height: 28px;
+}
+
+.tr_list:hover{
+    height: 30px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #4E8397, #4E8397);
+    color: white;
+    transition-duration: 0.4s;
+}
+
+.tr_list:nth-child(even) {
+    background-color: white;
+}
+
+.pagination_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

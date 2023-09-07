@@ -1,0 +1,57 @@
+.card {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(90deg, #845EC2, #B39CD0, #FBEAFF);
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -200px 0 0 -200px;
+    border-radius: 20px;
+
+}
+
+.box{
+    display: flex;
+    justify-content: center;
+    margin: 30px 10px 10px 10px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: flex-start;
+}
+
+.input{
+    width: 70%;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-family: Snell Roundhand, cursive;
+
+}
+
+.text {
+    margin: 0 0 10px 0;
+    font-family: Snell Roundhand, cursive;
+}
+
+.btn{
+    width: 70%;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-family: Snell Roundhand, cursive;
+    background: #845EC2;
+    color: white;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.btn:hover{
+    width: 75%;
+    height: 60px;
+    background: #4E8397;
+}
+
