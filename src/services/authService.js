@@ -1,28 +1,28 @@
 import {axiosService} from "./axiosService";
 import {urls} from "../configs";
 
-const accessTokenKey = 'access';
-const refreshTokenKey = 'refresh';
-
+const accessTokenKey = 'access'
+const refreshTokenKey = 'refresh'
 const authService = {
-        login: async function (cred) {
-            const response = await axiosService.post(urls.auth.login, cred);
+    login: async function (cred) {
+        const response = await axiosService.post(urls.auth.login, cred);
 
-            if (response.status === 200) {
-                this.setTokens(response.data)
-            }
+        if (response.status === 200) {
+            this.setTokens(response.data)
+        }
 
-            return response
-        },
-        refresh: async function (refresh) {
-            const response = await axiosService.post(urls.auth.refresh, {refresh})
+        return response
+    },
+    refresh: async function (refresh) {
+        const response = await axiosService.post(urls.auth.refresh, {refresh})
 
-            if (response.status === 200) {
-                this.setTokens(response.data)
-            }
+        if (response.status === 200) {
+            this.setTokens(response.data)
+        }
 
-            return response
-        },
+        return response
+    },
+    me: () => axiosService.get(urls.auth.me),
 
     setTokens: ({access, refresh}) => {
         localStorage.setItem(accessTokenKey, access)
@@ -35,8 +35,8 @@ const authService = {
         localStorage.removeItem(refreshTokenKey)
     },
     isAuthenticated: () => !!localStorage.getItem(accessTokenKey)
-};
+}
 
 export {
     authService
-};
+}
