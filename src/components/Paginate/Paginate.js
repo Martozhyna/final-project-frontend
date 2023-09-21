@@ -37,7 +37,7 @@ const Paginate = () => {
                            containerClassName={"pagination"}
                            className={css.pagination}
                            activeClassName={css.active}
-                           pageCount={total_pages}/>
+                           pageCount={Math.ceil(total_pages)}/>
         </div>
     )
 };
