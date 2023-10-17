@@ -1,0 +1,17 @@
+.comments{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.comments_info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comments >div >p{
+    margin: 5px;
+    color: white;
+}
+

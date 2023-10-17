@@ -7,23 +7,28 @@ import css from './Paginate.module.css';
 const Paginate = () => {
 
     const {total_pages} = useSelector(state => state.order);
-    const [, setQuery] = useSearchParams({page: '1'});
+    const [query, setQuery] = useSearchParams({page: '1'});
     const [order] = useSearchParams({ordering: null})
 
     const handlePageClick = (e) => {
-        const selectedPage = e.selected + 1;
+        let selectedPage = e.selected + 1;
 
         if (order.get('ordering') !== 'null') {
+
             setQuery({
+                ordering: order.get('ordering'),
                 page: selectedPage,
-                ordering: order.get('ordering')
+
             });
+
         } else {
             setQuery({
                 page: selectedPage
             });
         }
+
     };
+
 
     return (
         <div>
@@ -36,7 +41,8 @@ const Paginate = () => {
                            breakClassName={"break-me"}
                            containerClassName={"pagination"}
                            className={css.pagination}
-                           activeClassName={css.active}
+                           activeClassName={`${!query.get('page') ? '' : css.active}` }
+                           // activeClassName={css.active}
                            pageCount={Math.ceil(total_pages)}/>
         </div>
     )

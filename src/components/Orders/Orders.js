@@ -5,7 +5,7 @@ import {useSearchParams} from "react-router-dom";
 import {orderActions} from "../../redux";
 import css from './Orders.module.css';
 import {Paginate} from "../Paginate/Paginate";
-
+import {Order} from "../Order/Order";
 
 const Orders = () => {
     const dispatch = useDispatch();
@@ -16,7 +16,6 @@ const Orders = () => {
     useEffect(() => {
         dispatch(orderActions.getAll({page: query.get('page'), ordering: order.get('ordering')}));
     }, [dispatch, query, order])
-
 
     const sort = (field) => {
         let order_value = order.get('ordering')
@@ -33,7 +32,7 @@ const Orders = () => {
         <div>
             {orders && <table className={css.table}>
                 <thead>
-                <tr className={css.th_list}>
+                <tr className={css.th_list}  >
                     <th onClick={() => {
                         sort('id')
                     }}>id
@@ -86,33 +85,28 @@ const Orders = () => {
                         sort('created_at')
                     }}>created_at
                     </th>
+                    <th onClick={() => {
+                        sort('manager')
+                    }}>manager
+                    </th>
+                    <th onClick={() => {
+                        sort('group')
+                    }}>group
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
-                {orders.map(order => (
-                        <tr key={order.id} className={css.tr_list}>
-                            <td>{order.id}</td>
-                            <td>{order.name}</td>
-                            <td>{order.surname}</td>
-                            <td>{order.email}</td>
-                            <td>{order.phone}</td>
-                            <td>{order.age}</td>
-                            <td>{order.course}</td>
-                            <td>{order.course_format}</td>
-                            <td>{order.course_type}</td>
-                            <td>{order.status}</td>
-                            <td>{order.sum}</td>
-                            <td>{order.alreadyPaid}</td>
-                            <td>{order.created_at}</td>
-                        </tr>
-                    )
+
+                {orders.map(order => (<Order order={order} key={order.id}/>)
                 )}
 
                 </tbody>
             </table>}
+
             <div className={css.pagination_block}>
                 <Paginate/>
             </div>
+
         </div>
     )
 }

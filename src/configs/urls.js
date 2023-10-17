@@ -2,6 +2,7 @@ const baseURL = 'http://localhost:8000';
 
 const orders = '/orders';
 const auth = '/auth';
+const comments = '/comments'
 
 const urls = {
     auth:{
@@ -10,7 +11,10 @@ const urls = {
     },
     orders:{
         orders
-    }
+    },
+    comments:{
+        comments
+    },
 };
 
 export {

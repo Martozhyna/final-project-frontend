@@ -1,0 +1,25 @@
+.collapsed{
+    display: none;
+}
+
+.task{
+    background: #4E8397;
+}
+
+
+.tr_list{
+    height: 28px;
+
+}
+
+.tr_list:hover{
+    height: 30px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #4E8397, #4E8397);
+    color: white;
+    transition-duration: 0.4s;
+}
+
+.tr_list:nth-child(even) {
+    background-color: white;
+}

@@ -18,7 +18,11 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
     "joi": "^17.10.1",
-    "@hookform/resolvers": "^2.9.10"
+    "@hookform/resolvers": "^2.9.10",
+    "websocket": "^1.0.34"
+  },
+  "devDependencies": {
+    "@types/websocket": "^1.0.6"
   },
   "scripts": {
     "start": "react-scripts start",

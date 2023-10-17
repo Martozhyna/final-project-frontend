@@ -1,0 +1,45 @@
+.editing{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.input{
+    width: 70%;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-family: Snell Roundhand, cursive;
+}
+
+.right_block{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn{
+    width: 70px;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-family: Snell Roundhand, cursive;
+    background: #845EC2;
+    color: white;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    margin: 5px;
+}
+
+.btn:hover{
+    width: 80px;
+    height: 60px;
+    background: #4E8397;
+}
+
+.text{
+    color: white;
+}

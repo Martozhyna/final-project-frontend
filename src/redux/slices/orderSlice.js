@@ -7,6 +7,8 @@ const initialState = {
     total_pages: null,
     page: 1,
     ordering: null,
+    comments: [],
+
     errors: null,
     loading: null
 };
@@ -22,6 +24,33 @@ const getAll = createAsyncThunk(
         }
     }
 );
+
+const getAllComments = createAsyncThunk(
+    'orderSlice/getAllComments',
+    async (id, {rejectWithValue}) => {
+        try {
+            const {data} = await ordersService.getAllCommentsByOrder(id);
+            return data
+        } catch (e) {
+            return rejectWithValue(e.response.data)
+        }
+    }
+);
+
+const createComment = createAsyncThunk(
+    'orderSlice/createComment',
+    async ({id, comment}, thunkAPI) => {
+        try {
+            const {data} = await ordersService.setComments(id, comment);
+            console.log(data)
+            return data
+
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e.response.data)
+        }
+    }
+);
+
 
 const orderSlice = createSlice({
     name: 'orderSlice',
@@ -49,13 +78,32 @@ const orderSlice = createSlice({
             .addCase(getAll.pending, (state) => {
                 state.loading = true;
             })
+            .addCase(getAllComments.fulfilled,(state, action) => {
+                const {comments} = action.payload
+                state.comments = comments;
+            })
+            .addCase(createComment.fulfilled,(state, action) => {
+                state.orders = state.orders.map((order) => {
+                    if (order.id === action.payload.order_id){
+                        return {
+                            ...order,
+                            status: 'In work',
+                            manager: action.payload.order
+                        };
+
+                    }
+                    return order
+                })
+            })
 });
 
 const {reducer:orderReducer, actions:{getOrdering}} = orderSlice;
 
 const orderActions = {
     getAll,
-    getOrdering
+    getOrdering,
+    createComment,
+    getAllComments
 };
 
 export {
