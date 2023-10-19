@@ -43,3 +43,9 @@
 .text{
     color: white;
 }
+
+.errors{
+    color: white;
+    font-family: Snell Roundhand, cursive;
+
+}

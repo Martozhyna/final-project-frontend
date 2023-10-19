@@ -8,14 +8,19 @@ import {orderActions} from "../../redux";
 
 const OrderDetails = ({order}) => {
 
-    const {register, handleSubmit, reset, formState:{errors}, setValue} = useForm();
+    const {register, handleSubmit, reset, formState: {errors}, setValue} = useForm();
     const dispatch = useDispatch();
     const [comments, setComments] = useState(order.comments)
+    const [error, setError] = useState(null);
 
     const submit = async (comment) => {
-       const newComment = await dispatch(orderActions.createComment({id: order.id, comment: comment}));
-        console.log(newComment.payload)
-        await setComments(prev => [...prev, newComment.payload])
+        const newComment = await dispatch(orderActions.createComment({id: order.id, comment: comment}));
+        console.log(newComment)
+        if (!newComment.error) {
+            setComments(prev => [...prev, newComment.payload]);
+        } else {
+            setError(newComment.payload)
+        }
         reset();
     };
 
@@ -26,15 +31,20 @@ const OrderDetails = ({order}) => {
                 <p>UTM: {order.utm}</p>
             </div>
             <div>
-                        {comments && comments.map(comment => (<Comments comment={comment} key={comment.id}/>))}
 
-                <div className={css.right_block} >
+                {comments && comments.map(comment => (<Comments comment={comment} key={comment.id}/>))}
+                {
+                    error && <div className={css.errors}>{error}</div>
+                }
+
+
+                <div className={css.right_block}>
 
                     <form onSubmit={handleSubmit(submit)}>
                         <div>
                             <input className={css.input} type="text" placeholder={'Comment'} {...register('comment')}/>
                         </div>
-                        <div >
+                        <div>
                             <button className={css.btn}>Submit</button>
                         </div>
                     </form>

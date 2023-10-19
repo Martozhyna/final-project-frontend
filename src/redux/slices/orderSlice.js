@@ -95,6 +95,9 @@ const orderSlice = createSlice({
                     return order
                 })
             })
+            .addCase(createComment.rejected, (state, action) => {
+                state.errors = action.payload
+            })
 });
 
 const {reducer:orderReducer, actions:{getOrdering}} = orderSlice;
