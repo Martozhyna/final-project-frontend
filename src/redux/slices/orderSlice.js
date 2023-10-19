@@ -42,7 +42,6 @@ const createComment = createAsyncThunk(
     async ({id, comment}, thunkAPI) => {
         try {
             const {data} = await ordersService.setComments(id, comment);
-            console.log(data)
             return data
 
         } catch (e) {

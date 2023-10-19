@@ -15,7 +15,6 @@ const OrderDetails = ({order}) => {
 
     const submit = async (comment) => {
         const newComment = await dispatch(orderActions.createComment({id: order.id, comment: comment}));
-        console.log(newComment)
         if (!newComment.error) {
             setComments(prev => [...prev, newComment.payload]);
         } else {
