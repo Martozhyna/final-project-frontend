@@ -4,6 +4,7 @@ import {useSearchParams} from "react-router-dom";
 
 import css from './Paginate.module.css';
 
+
 const Paginate = () => {
 
     const {total_pages} = useSelector(state => state.order);
@@ -29,6 +30,13 @@ const Paginate = () => {
 
     };
 
+    // const element = document.querySelector('[aria-label = "Page 1"]')
+    // if (!query.get('page')) {
+    //     element.classList.add(css.pag)
+    // }
+    // console.log(element)
+
+
 
     return (
         <div>
@@ -45,7 +53,7 @@ const Paginate = () => {
                            // activeClassName={css.active}
                            pageCount={Math.ceil(total_pages)}/>
         </div>
-    )
+    );
 };
 
 export {Paginate}

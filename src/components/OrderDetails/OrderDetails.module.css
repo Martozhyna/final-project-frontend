@@ -35,9 +35,10 @@
 }
 
 .btn:hover{
-    width: 80px;
-    height: 60px;
-    background: #4E8397;
+    /*width: 80px;*/
+    /*height: 60px;*/
+    background: white;
+    color: #4E8397;
 }
 
 .text{
