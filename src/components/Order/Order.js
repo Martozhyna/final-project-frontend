@@ -30,7 +30,7 @@ const Order = ({order}) => {
                 <td>{order.status}</td>
                 <td>{order.sum}</td>
                 <td>{order.alreadyPaid}</td>
-                <td>{order.created_at}</td>
+                <td>{order.created_at ? order.created_at.slice(0,10) : '-'}</td>
                 <td>{order.manager}</td>
                 <td>{order.group}</td>
             </tr>
