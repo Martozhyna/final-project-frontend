@@ -1,7 +1,9 @@
 import {useState} from "react";
 
+
 import css from './Order.module.css'
 import {OrderDetails} from "../OrderDetails/OrderDetails";
+import dateformat from "dateformat";
 
 const Order = ({order}) => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -30,7 +32,7 @@ const Order = ({order}) => {
                 <td>{order.status}</td>
                 <td>{order.sum}</td>
                 <td>{order.alreadyPaid}</td>
-                <td>{order.created_at ? order.created_at.slice(0,10) : '-'}</td>
+                <td>{order.created_at ? dateformat(order.created_at, 'mmm d, yyyy') : '-'}</td>
                 <td>{order.manager}</td>
                 <td>{order.group}</td>
             </tr>

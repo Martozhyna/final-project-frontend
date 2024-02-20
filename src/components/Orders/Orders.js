@@ -17,6 +17,8 @@ const Orders = () => {
         dispatch(orderActions.getAll({page: query.get('page'), ordering: order.get('ordering')}));
     }, [dispatch, query, order])
 
+
+
     const sort = (field) => {
         let order_value = order.get('ordering')
         setOrder((value => ({ordering: +value.get('ordering')})));
@@ -27,6 +29,7 @@ const Orders = () => {
         }
 
     };
+    console.log(sort)
 
     return (
         <div>
