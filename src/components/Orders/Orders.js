@@ -11,7 +11,7 @@ const Orders = () => {
     const dispatch = useDispatch();
     const {orders} = useSelector(state => state.order);
     const [query] = useSearchParams({page: '1'});
-    const [order, setOrder] = useSearchParams({ordering: null})
+    const [order, setOrder] = useSearchParams({ordering: '-id'})
 
     useEffect(() => {
         dispatch(orderActions.getAll({page: query.get('page'), ordering: order.get('ordering')}));

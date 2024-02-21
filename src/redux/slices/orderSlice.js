@@ -15,9 +15,9 @@ const initialState = {
 
 const getAll = createAsyncThunk(
     'orderSlice/getAll',
-    async ({page, ordering}, {rejectWithValue}) => {
+    async (params, {rejectWithValue}) => {
         try {
-            const {data} = await ordersService.getAll(page, ordering);
+            const {data} = await ordersService.getAll(params);
             return data
         } catch (e) {
             return rejectWithValue(e.response.data)
@@ -62,10 +62,10 @@ const orderSlice = createSlice({
             .addCase(getAll.fulfilled, (state, action) => {
                 const {total_pages, offset, page, results, ordering} = action.payload
                 state.orders = results;
-                state.page = page;
+                // state.page = page;
                 state.offset = offset;
                 state.total_pages = total_pages;
-                state.ordering = ordering
+                // state.ordering = ordering
                 state.loading = false;
             })
 
