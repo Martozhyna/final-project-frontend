@@ -22,10 +22,10 @@ const Orders = () => {
     const sort = (field) => {
         let order_value = order.get('ordering')
         setOrder((value => ({ordering: +value.get('ordering')})));
-        setOrder(((value => ({ordering: field}))))
+        setOrder(((value => ({ordering: field, page: 1}))))
 
         if (order_value === field) {
-            setOrder(((value => ({ordering: `-${field}`}))))
+            setOrder(((value => ({ordering: `-${field}`, page: 1}))))
         }
 
     };
