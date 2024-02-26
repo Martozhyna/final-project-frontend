@@ -1,41 +1,58 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
+
 
 import {orderActions} from "../../redux";
 import css from './Orders.module.css';
 import {Paginate} from "../Paginate/Paginate";
 import {Order} from "../Order/Order";
+import {Paginate2} from "../Paginate/Paginate2";
+
 
 const Orders = () => {
     const dispatch = useDispatch();
-    const {orders} = useSelector(state => state.order);
-    const [query] = useSearchParams({page: '1'});
+    const {orders, total_pages} = useSelector(state => state.order);
+    const [query, setQuery] = useSearchParams({page: '1'});
     const [order, setOrder] = useSearchParams({ordering: '-id'})
+    const [currentPage, setCurrentPage] = useState(null);
+
 
     useEffect(() => {
         dispatch(orderActions.getAll({page: query.get('page'), ordering: order.get('ordering')}));
     }, [dispatch, query, order])
 
 
+    let a = '-id'
+
 
     const sort = (field) => {
         let order_value = order.get('ordering')
+
         setOrder((value => ({ordering: +value.get('ordering')})));
         setOrder(((value => ({ordering: field, page: 1}))))
+        setCurrentPage(0)
+
+
 
         if (order_value === field) {
             setOrder(((value => ({ordering: `-${field}`, page: 1}))))
+            setCurrentPage(0)
+
+
         }
 
+
+
+
     };
-    console.log(sort)
+
 
     return (
         <div>
             {orders && <table className={css.table}>
                 <thead>
-                <tr className={css.th_list}  >
+                <tr className={css.th_list}>
                     <th onClick={() => {
                         sort('id')
                     }}>id
@@ -105,6 +122,7 @@ const Orders = () => {
 
                 </tbody>
             </table>}
+
 
             <div className={css.pagination_block}>
                 <Paginate/>

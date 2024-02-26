@@ -7,6 +7,7 @@
     list-style: none;
     outline: none;
 }
+
 .pagination > .active > a{
     background-color: #47ccde ;
     border-color: #47ccde ;
