@@ -8,7 +8,6 @@ const initialState = {
     page: 1,
     ordering: null,
     comments: [],
-
     errors: null,
     loading: null
 };
@@ -60,7 +59,7 @@ const orderSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                const {total_pages, offset, page, results, ordering} = action.payload
+                const {total_pages, offset, results} = action.payload
                 state.orders = results;
                 // state.page = page;
                 state.offset = offset;
