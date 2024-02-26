@@ -25,13 +25,16 @@ const Paginate = () => {
 
         }};
 
+    const pageCount = Math.ceil(total_pages);
+    const forcePage = Math.min(pageCount - 1, parseInt(query.get('page') || 1) - 1);
+
     return (
         <div>
             <ReactPaginate
                 previousLabel={'<'}
                 nextLabel={'>'}
                 breakLabel={'...'}
-                pageCount={Math.ceil(total_pages)}
+                pageCount={pageCount}
                 marginPagesDisplayed={1}
                 pageRangeDisplayed={7}
                 onPageChange={handlePageClick}
@@ -40,7 +43,7 @@ const Paginate = () => {
                 className={css.pagination}
                 activeClassName={css.active}
                 // initialPage={(parseInt(query.get('page')) || 1) - 1}
-                forcePage={query.get('page') === '1' ? 0 : parseInt(query.get('page') )- 1}
+                forcePage={forcePage}
             />
         </div>
 
