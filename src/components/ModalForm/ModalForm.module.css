@@ -1,6 +1,7 @@
 .initialState{
     text-align: center;
     font-size: 30px;
+    margin: 10px;
     font-family: Snell Roundhand, cursive;
 
 }
@@ -8,6 +9,7 @@
 .nextState{
     text-align: center;
     font-size: 35px;
+    margin: 10px;
     font-family: Snell Roundhand, cursive;
 }
 
