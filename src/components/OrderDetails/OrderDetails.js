@@ -2,9 +2,12 @@ import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {useState} from "react";
 
+
 import css from './OrderDetails.module.css';
 import {Comments} from "../Comments/Comments";
 import {orderActions} from "../../redux";
+import {ModalConstruction} from "../ModalConstruction/ModalConstruction";
+
 
 const OrderDetails = ({order}) => {
 
@@ -42,14 +45,15 @@ const OrderDetails = ({order}) => {
                     <form onSubmit={handleSubmit(submit)}>
                         <div>
                             <input className={css.input} type="text" placeholder={'Comment'} {...register('comment')}/>
+                            <button className={css.btn}>Submit</button>
                         </div>
                         <div>
-                            <button className={css.btn}>Submit</button>
+
                         </div>
                     </form>
 
                     <div>
-                        <button className={css.btn}>Edit</button>
+                        <ModalConstruction order={order}/>
                     </div>
 
                 </div>

@@ -49,11 +49,27 @@ const createComment = createAsyncThunk(
     }
 );
 
+const updateById = createAsyncThunk(
+    'orderSlice/updateById',
+    async (params, thunkAPI) => {
+        try {
+            const {data} = await ordersService.updateById(params.id, params.data);
+            return {
+                ...data
+            }
+
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e.response.data)
+        }
+    }
+);
+
 
 const orderSlice = createSlice({
     name: 'orderSlice',
     initialState,
     reducers: {
+
 
     },
     extraReducers: builder =>
@@ -96,6 +112,19 @@ const orderSlice = createSlice({
             .addCase(createComment.rejected, (state, action) => {
                 state.errors = action.payload
             })
+            .addCase(updateById.fulfilled, (state, action) => {
+                const findIndex = state.orders.findIndex((order) => order.id === action.payload.id);
+                state.orders[findIndex] = action.payload;
+                state.loading = false;
+            })
+            .addCase(updateById.rejected, (state, action) => {
+                state.error = action.payload;
+                state.loading = false;
+            })
+            .addCase(updateById.pending, (state, action) => {
+                state.loading = true;
+            })
+
 });
 
 const {reducer:orderReducer, actions:{getOrdering}} = orderSlice;
@@ -104,7 +133,8 @@ const orderActions = {
     getAll,
     getOrdering,
     createComment,
-    getAllComments
+    getAllComments,
+    updateById
 };
 
 export {

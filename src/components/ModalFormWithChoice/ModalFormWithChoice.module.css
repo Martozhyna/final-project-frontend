@@ -1,0 +1,17 @@
+.contain{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.input{
+    width: 70%;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    margin: 5px;
+    font-size: 16px;
+    font-family: Snell Roundhand, cursive;
+}

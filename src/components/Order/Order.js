@@ -10,11 +10,11 @@ const Order = ({order}) => {
 
     const handleClick = () => {
         setIsExpanded(() => !isExpanded);
-        if (isExpanded) {
-            console.log('True');
-        } else {
-            console.log('False')
-        }
+        // if (isExpanded) {
+        //     console.log('True');
+        // } else {
+        //     console.log('False')
+        // }
     };
 
     return (
@@ -34,7 +34,7 @@ const Order = ({order}) => {
                 <td>{order.alreadyPaid}</td>
                 <td>{order.created_at ? dateformat(order.created_at, 'mmm d, yyyy') : '-'}</td>
                 <td>{order.manager}</td>
-                <td>{order.group}</td>
+                <td>{order.group?.title}</td>
             </tr>
 
             <tr className={`${!isExpanded ? css.collapsed : css.task} `}>

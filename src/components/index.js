@@ -3,3 +3,7 @@ export * from './Paginate/Paginate';
 export * from './Order/Order';
 export * from './OrderDetails/OrderDetails';
 export * from './Comments/Comments';
+export * from './ModalFormWithChoice/ModalFormWithChoice';
+export * from './ModalFormInput/ModalFormInput.module.css';
+export * from './ModalConstruction/ModalConstruction';
+export * from './ModalForm/ModalForm';
