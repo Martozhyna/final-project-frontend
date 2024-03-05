@@ -1,10 +1,10 @@
 import {useForm} from "react-hook-form";
 import {useState} from "react";
 import {joiResolver} from "@hookform/resolvers/joi";
+import {useNavigate} from "react-router-dom";
 
 import css from './LodinPage.module.css';
 import {authService} from "../../services";
-import {useNavigate} from "react-router-dom";
 import {loginValidator} from "../../validators";
 
 const LoginPage = () => {
@@ -53,7 +53,6 @@ const LoginPage = () => {
                     <button className={css.btn}>LOGIN</button>
 
                 </div>
-
 
             </div>
 

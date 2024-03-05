@@ -1,22 +1,17 @@
 import css from './ModalFormWithChoice.module.css';
+import {ModalOptionItem} from "../ModalOptionItem/ModalOptionItem";
 
-const ModalFormWithChoice = ({ register, label, id, name, options, addLabel = true, defaultLabel, ...selectProps }) => {
+const ModalFormWithChoice = ({ register, label, name, options, addLabel = true, defaultLabel, ...selectProps }) => {
     return (
         <div className={css.contain}>
-            {addLabel && <label htmlFor={id}>{label}</label>}
+            {addLabel ? <label >{label}</label> : null}
 
-            <select className={css.input} id={id} name={name} {...register(name)} {...selectProps}>
+            <select className={css.input} name={name} {...register(name)} {...selectProps}>
                 <option value={""}>{defaultLabel}</option>
-                {options?.map((option, index) =>
-                    typeof option === "object" ? (
-                        <option key={index} value={option.value}>
-                            {option.label}
-                        </option>
-                    ) : (
-                        <option key={index} value={option}>
-                            {option}
-                        </option>
+                {options?.map((option, index) => (
+                    <ModalOptionItem key={index} option={option} index={index}/>
                     )
+
                 )}
             </select>
         </div>

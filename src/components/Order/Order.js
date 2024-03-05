@@ -1,20 +1,14 @@
 import {useState} from "react";
-
+import dateformat from "dateformat";
 
 import css from './Order.module.css'
 import {OrderDetails} from "../OrderDetails/OrderDetails";
-import dateformat from "dateformat";
 
 const Order = ({order}) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const handleClick = () => {
         setIsExpanded(() => !isExpanded);
-        // if (isExpanded) {
-        //     console.log('True');
-        // } else {
-        //     console.log('False')
-        // }
     };
 
     return (

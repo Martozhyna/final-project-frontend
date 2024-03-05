@@ -3,10 +3,9 @@ import css from './ModalFormInput.module.css';
 const ModalFormInput = ({ register, label, id, name, addLabel = true, ...inputProps }) => {
     return (
         <div className={css.container}>
-            {addLabel && <label htmlFor={id}>{label}</label>}
+            {addLabel ? <label >{label}</label> : null}
 
             <input
-                id={id}
                 placeholder={label}
                 {...register(name)}
                 {...inputProps}

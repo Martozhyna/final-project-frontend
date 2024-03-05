@@ -7,3 +7,4 @@ export * from './ModalFormWithChoice/ModalFormWithChoice';
 export * from './ModalFormInput/ModalFormInput.module.css';
 export * from './ModalConstruction/ModalConstruction';
 export * from './ModalForm/ModalForm';
+export * from './ModalOptionItem/ModalOptionItem';

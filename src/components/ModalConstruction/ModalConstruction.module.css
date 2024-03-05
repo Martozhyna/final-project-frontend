@@ -11,7 +11,21 @@
     color: white;
     font-family: Snell Roundhand, cursive;
     font-size: 25px;
+    transition: opacity .5s;
+
 }
+
+.modalCustom--invisible {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modalCustom--visible {
+    opacity: 1;
+    pointer-events: initial;
+}
+
+
 
 .btns{
     display: flex;
@@ -34,6 +48,26 @@
 }
 
 .btn:hover{
+    background: white;
+    color: #4E8397;
+}
+
+.btn2{
+    width: 200px;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    font-family: Snell Roundhand, cursive;
+    background: #845EC2;
+    color: white;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    margin: 5px;
+}
+
+.btn2:hover{
+    width: 250px;
     background: white;
     color: #4E8397;
 }

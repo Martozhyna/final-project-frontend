@@ -42,7 +42,6 @@ const Paginate = () => {
                 containerClassName={'pagination'}
                 className={css.pagination}
                 activeClassName={css.active}
-                // initialPage={(parseInt(query.get('page')) || 1) - 1}
                 forcePage={forcePage}
             />
         </div>
