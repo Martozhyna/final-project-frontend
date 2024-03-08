@@ -39,11 +39,13 @@ const ModalForm = ({order, setIsOpen}) => {
     const {orderForUpdate} = useSelector(state => state.order)
 
     const create = () => {
+        setIsOpen(true)
         setOpen(null)
 
     }
 
     const show = () => {
+        setIsOpen(true)
         setOpen(1)
 
     }
@@ -71,6 +73,9 @@ const ModalForm = ({order, setIsOpen}) => {
             Object.entries(data).filter(([key, value]) => value !== "")
         );
         dispatch(orderActions.updateById({ id: order.id, data: cleanedData }));
+    }
+
+    const closeModal = () => {
         setIsOpen(false)
     }
 
@@ -147,7 +152,7 @@ const ModalForm = ({order, setIsOpen}) => {
 
             </div>
             <div className={css.buttonContainer}>
-                <button className={css.btn}>Save</button>
+                <button className={css.btn} onClick={closeModal}>Save</button>
             </div>
 
         </form>
