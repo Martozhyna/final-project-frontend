@@ -13,6 +13,7 @@ const Orders = () => {
     const [query] = useSearchParams({page: '1'});
     const [order, setOrder] = useSearchParams({ordering: '-id'})
 
+
     useEffect(() => {
         dispatch(orderActions.getAll({page: query.get('page'), ordering: order.get('ordering')}));
     }, [dispatch, query, order])

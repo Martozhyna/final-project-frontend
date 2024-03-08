@@ -34,7 +34,7 @@ const ModalConstruction = ({order}) => {
                    contentLabel="Example ModalConstruction">
                 <div >
 
-                   <ModalForm order={order}/>
+                   <ModalForm order={order} setIsOpen={setIsOpen}/>
 
                 </div>
                 <div className={css.btns}>

@@ -5,11 +5,19 @@ import {useEffect, useState} from "react";
 import css from './ModalForm.module.css'
 import {ModalFormInput} from "../ModalFormInput/ModalFormInput";
 import {ModalFormWithChoice} from "../ModalFormWithChoice/ModalFormWithChoice";
-import {orderActions} from "../../redux";
+import {groupAction, orderActions} from "../../redux";
 
-const ModalForm = ({order}) => {
+const ModalForm = ({order, setIsOpen}) => {
 
-    const [title, setTitle] = useState(null);
+    const [open, setOpen] = useState(1)
+    const { groups } = useSelector((state) => state.group);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(groupAction.getAll());
+    }, [dispatch])
+
+
     const {register, handleSubmit, setValue} = useForm({
         mode: "onChange", defaultValues: {
             id: order.id,
@@ -27,8 +35,18 @@ const ModalForm = ({order}) => {
             group: order.group ? order.group.title : "",
         }
     });
-    const dispatch = useDispatch();
+
     const {orderForUpdate} = useSelector(state => state.order)
+
+    const create = () => {
+        setOpen(null)
+
+    }
+
+    const show = () => {
+        setOpen(1)
+
+    }
 
     useEffect(() => {
         if (orderForUpdate) {
@@ -49,29 +67,35 @@ const ModalForm = ({order}) => {
 
 
     const submit = (data) => {
-        setTitle(null)
-        const newData = {};
-        for (const [key, value] of Object.entries(data)) {
-            if (value !== "") {
-                newData[key] = value;
-            }
-        }
-        dispatch(orderActions.updateById({id: order.id, data: newData}))
-        setTitle(1)
+        const cleanedData = Object.fromEntries(
+            Object.entries(data).filter(([key, value]) => value !== "")
+        );
+        dispatch(orderActions.updateById({ id: order.id, data: cleanedData }));
+        setIsOpen(false)
     }
 
     return (
         <form onSubmit={handleSubmit(submit)}>
-            {
-                title === null ? <div className={css.initialState}>Please, make your choice</div> :
-                    <div className={css.nextState}>Congratulations, changes saved!</div>
-            }
+
             <div className={css.main}>
 
                 <div>
                     <div>
-                        <ModalFormWithChoice name={'group'} label={'group'} register={register}
-                                             defaultLabel={'make your choice'}/>
+                        {
+                            open === null ?
+                                <ModalFormInput type={'text'} name={'group'} label={'group'} register={register}/> :
+                                <ModalFormWithChoice name={'group'} label={'group'} register={register}
+                                                     defaultLabel={'make your choice'}
+                                                     options={groups && groups.map((group) => ({
+                                                         value: group.title,
+                                                         label: group.title
+                                                     }))}/>
+                        }
+                        <div className={css.main}>
+                            <button className={css.littleBtn} onClick={create}>Add</button>
+                            <button className={css.littleBtn} onClick={show}>Show</button>
+                        </div>
+
                     </div>
                     <div>
                         <ModalFormInput type={'text'} name={'name'} label={'name'} register={register}/>

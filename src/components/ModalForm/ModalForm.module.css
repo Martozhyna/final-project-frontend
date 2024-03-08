@@ -47,3 +47,23 @@
     background: white;
     color: #4E8397;
 }
+
+.littleBtn{
+    width: 80px;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    font-family: Snell Roundhand, cursive;
+    background: #845EC2;
+    color: white;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    margin: 5px;
+
+}
+
+.littleBtn:hover {
+    background: white;
+    color: #4E8397;
+}
