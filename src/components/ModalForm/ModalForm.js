@@ -18,8 +18,8 @@ const ModalForm = ({order, setIsOpen}) => {
     }, [dispatch])
 
 
-    const {register, handleSubmit, setValue} = useForm({
-        mode: "onChange", defaultValues: {
+    const {register, handleSubmit, setValue, reset} = useForm({
+        mode: "onSubmit", defaultValues: {
             id: order.id,
             name: order.name,
             surname: order.surname,
@@ -39,14 +39,15 @@ const ModalForm = ({order, setIsOpen}) => {
     const {orderForUpdate} = useSelector(state => state.order)
 
     const create = () => {
-        setIsOpen(true)
         setOpen(null)
 
     }
 
     const show = () => {
-        setIsOpen(true)
-        setOpen(1)
+        if (open) {
+            setOpen(1)
+        }
+
 
     }
 
@@ -68,16 +69,24 @@ const ModalForm = ({order, setIsOpen}) => {
     }, [orderForUpdate, setValue]);
 
 
-    const submit = (data) => {
-        const cleanedData = Object.fromEntries(
-            Object.entries(data).filter(([key, value]) => value !== "")
-        );
-        dispatch(orderActions.updateById({ id: order.id, data: cleanedData }));
+    const submit = async (data) => {
+        if (open){
+            const cleanedData = Object.fromEntries(
+                Object.entries(data).filter(([key, value]) => value !== "")
+            );
+            dispatch(orderActions.updateById({ id: order.id, data: cleanedData }));
+            setIsOpen(false)
+        }
+        else {
+            await dispatch(groupAction.createGroup(data.group));
+            setOpen(1)
+
+        }
+
     }
 
-    const closeModal = () => {
-        setIsOpen(false)
-    }
+    console.log(open)
+
 
     return (
         <form onSubmit={handleSubmit(submit)}>
@@ -88,17 +97,20 @@ const ModalForm = ({order, setIsOpen}) => {
                     <div>
                         {
                             open === null ?
-                                <ModalFormInput type={'text'} name={'group'} label={'group'} register={register}/> :
-                                <ModalFormWithChoice name={'group'} label={'group'} register={register}
+                                (<>
+                                    {/*<label htmlFor="group">Group</label>*/}
+                                    <ModalFormInput type={'text'} id="group" name={'group'} label={'group'} register={register} />
+                                </>) :
+                                (<ModalFormWithChoice name={'group'} label={'group'} register={register}
                                                      defaultLabel={'make your choice'}
                                                      options={groups && groups.map((group) => ({
                                                          value: group.title,
                                                          label: group.title
-                                                     }))}/>
+                                                     }))}/>)
                         }
                         <div className={css.main}>
-                            <button className={css.littleBtn} onClick={create}>Add</button>
-                            <button className={css.littleBtn} onClick={show}>Show</button>
+                            <button type={"button"}  className={css.littleBtn} onClick={create}>Add</button>
+                            <button  className={css.littleBtn} onClick={show}>{open ? 'Show' : 'Select'}</button>
                         </div>
 
                     </div>
@@ -152,7 +164,7 @@ const ModalForm = ({order, setIsOpen}) => {
 
             </div>
             <div className={css.buttonContainer}>
-                <button className={css.btn} onClick={closeModal}>Save</button>
+                <button className={css.btn} >Save</button>
             </div>
 
         </form>

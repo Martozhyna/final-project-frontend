@@ -25,9 +25,9 @@ const getAll = createAsyncThunk(
 
 const createGroup = createAsyncThunk(
     'groupSlice/createComment',
-    async ({group}, thunkAPI) => {
+    async (group, thunkAPI) => {
         try {
-            const {data} = await groupsService.create(group);
+            const {data} = await groupsService.create({title: group});
             return data
 
         } catch (e) {
@@ -58,6 +58,11 @@ const groupSlice = createSlice({
             .addCase(getAll.pending, (state) => {
                 state.loading = true;
             })
+            .addCase(createGroup.fulfilled, (state, action) => {
+                state.groups = [...state.groups, action.payload];
+            })
+
+
 });
 
 const {reducer: groupReducer} = groupSlice;
