@@ -1,0 +1,21 @@
+.btn {
+    font-family: Snell Roundhand, cursive;
+    font-weight: 500;
+    font-size: 17px;
+    padding: 0.8em 1.5em 0.8em 1.2em;
+    color: white;
+    background: #D5CABD;
+    border: solid 2px #D5CABD;
+    /*box-shadow: 0 0.7em 1.5em -0.5em #D5CABD;*/
+    letter-spacing: 0.05em;
+    border-radius: 20em;
+    margin: 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background: white;
+    color: #D5CABD;
+
+}

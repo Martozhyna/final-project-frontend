@@ -3,7 +3,7 @@
 }
 
 .task{
-    background: #4E8397;
+    background: #879789;
 }
 
 
@@ -13,9 +13,8 @@
 }
 
 .tr_list:hover{
-    height: 30px;
     cursor: pointer;
-    background: linear-gradient(90deg, #4E8397, #4E8397);
+    background: linear-gradient(90deg, #879789, #879789);
     color: white;
     transition-duration: 0.4s;
 }

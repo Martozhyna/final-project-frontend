@@ -6,19 +6,15 @@
 
 .th_list {
     height: 35px;
-    background: linear-gradient(90deg, #845EC2, #B39CD0, #FBEAFF);;
+    background: #AFB09F;
     color: white;
 }
 
-.tr_list{
-    height: 28px;
 
-}
 
 .tr_list:hover{
-    height: 30px;
     cursor: pointer;
-    background: linear-gradient(90deg, #4E8397, #4E8397);
+    background: linear-gradient(90deg, #8195CF, #8195CF);
     color: white;
     transition-duration: 0.4s;
 }

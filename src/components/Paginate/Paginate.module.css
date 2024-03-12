@@ -19,8 +19,8 @@
     align-items: center;
     width: 60px ;
     border-radius: 10px;
-    background: #B39CD0;
-    color: #FBEAFF;
+    background: #D5CABD;
+    color: white;
     padding: 5px 10px;
     margin: 10px;
     outline: none;
@@ -28,7 +28,7 @@
     transition-duration: 0.4s;
 }
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
-    background-color: #4E8397 ;
+    background-color: #879789 ;
     outline: none ;
 }
 .pagination > li > a, .pagination > li > span{
