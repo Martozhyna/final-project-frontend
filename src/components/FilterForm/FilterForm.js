@@ -1,15 +1,46 @@
-import {ModalFormInput} from "../ModalFormInput/ModalFormInput";
 import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+
+import {ModalFormInput} from "../ModalFormInput/ModalFormInput";
 import css from './FilterForm.module.css';
 import {ModalFormWithChoice} from "../ModalFormWithChoice/ModalFormWithChoice";
-import {useSelector} from "react-redux";
+import {orderActions} from "../../redux";
+import {useSearchParams} from "react-router-dom";
+import {useEffect} from "react";
 
 const FilterForm = () => {
 
     const {register, handleSubmit, setValue, reset} = useForm({mode:"all"})
     const { groups } = useSelector((state) => state.group);
+    const dispatch = useDispatch();
+    const [query, setQuery] = useSearchParams({ page: "1" });
+
+    useEffect(() => {
+        dispatch(orderActions.getAll(query))
+    }, [dispatch, query])
+
+    const submit = (data) => {
+        const cleanedData = Object.fromEntries(
+            Object.entries(data).filter(([key, value]) => value !== "")
+        );
+        Object.entries(cleanedData).forEach(([key, value]) => {
+            setQuery((currentQuery) => {
+                const existingValues = currentQuery.getAll(key) || [];
+                const newValues = Array.isArray(value) ? value : [value];
+
+                currentQuery.set(key, newValues);
+                currentQuery.set("page", "1");
+                return currentQuery;
+            });
+        })
+
+
+
+    }
+
+
     return (
-        <form>
+        <form onChange={handleSubmit(submit)}>
             <div className={css.first}>
                 <div>
                     <ModalFormInput type={'text'} name={'name'} label={'name'} addLabel={false} register={register}/>

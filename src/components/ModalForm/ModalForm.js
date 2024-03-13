@@ -85,7 +85,6 @@ const ModalForm = ({order, setIsOpen}) => {
 
     }
 
-    console.log(open)
 
 
     return (
