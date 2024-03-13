@@ -4,39 +4,41 @@ import {useDispatch, useSelector} from "react-redux";
 import {ModalFormInput} from "../ModalFormInput/ModalFormInput";
 import css from './FilterForm.module.css';
 import {ModalFormWithChoice} from "../ModalFormWithChoice/ModalFormWithChoice";
-import {orderActions} from "../../redux";
+import {groupAction, orderActions} from "../../redux";
 import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
 
-const FilterForm = () => {
+const FilterForm = ({search, setSearch}) => {
 
     const {register, handleSubmit, setValue, reset} = useForm({mode:"all"})
     const { groups } = useSelector((state) => state.group);
+    const {page} = useSelector(state => state.order)
     const dispatch = useDispatch();
-    const [query, setQuery] = useSearchParams({ page: "1" });
 
     useEffect(() => {
-        dispatch(orderActions.getAll(query))
-    }, [dispatch, query])
+        dispatch(groupAction.getAll());
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(orderActions.getAll(search))
+    }, [dispatch, search])
 
     const submit = (data) => {
         const cleanedData = Object.fromEntries(
             Object.entries(data).filter(([key, value]) => value !== "")
         );
         Object.entries(cleanedData).forEach(([key, value]) => {
-            setQuery((currentQuery) => {
+            setSearch((currentQuery) => {
                 const existingValues = currentQuery.getAll(key) || [];
                 const newValues = Array.isArray(value) ? value : [value];
 
                 currentQuery.set(key, newValues);
-                currentQuery.set("page", "1");
+                currentQuery.set("page", page);
                 return currentQuery;
             });
         })
-
-
-
     }
+
 
 
     return (
@@ -57,10 +59,10 @@ const FilterForm = () => {
                                              defaultLabel={'course'}/>
                 </div>
                 <div>
-                        <ModalFormWithChoice name={'courseFormat'} label={'course format'} addLabel={false}
+                        <ModalFormWithChoice name={'course_format'} label={'course format'} addLabel={false}
                                              register={register} options={['static', 'online']}
                                              defaultLabel={'course format'}/>
-                        <ModalFormWithChoice name={'courseType'} label={'course type'} addLabel={false}
+                        <ModalFormWithChoice name={'course_type'} label={'course type'} addLabel={false}
                                              register={register}
                                              options={['pro', 'minimal', 'premium', 'incubator', 'vip']}
                                              defaultLabel={'course type'}/>

@@ -2,10 +2,10 @@ import {FilterForm} from "../FilterForm/FilterForm";
 import {FilterOption} from "../FilterOption/FilterOption";
 import css from './Filter.module.css';
 
-const Filter = () => {
+const Filter = ({search, setSearch}) => {
     return (
         <div className={css.main}>
-            <FilterForm/>
+            <FilterForm search={search} setSearch={setSearch}/>
             <FilterOption/>
         </div>
     )

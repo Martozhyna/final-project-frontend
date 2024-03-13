@@ -1,11 +1,11 @@
 import {Headline} from "../Headline/Headline";
 import {Filter} from "../Filter/Filter";
 
-const Header = () => {
+const Header = ({search, setSearch}) => {
     return (
         <div>
-            <Headline/>
-            <Filter/>
+            <Headline />
+            <Filter search={search} setSearch={setSearch}/>
         </div>
     )
 }

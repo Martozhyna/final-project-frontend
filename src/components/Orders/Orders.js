@@ -7,7 +7,7 @@ import css from './Orders.module.css';
 import {Paginate} from "../Paginate/Paginate";
 import {Order} from "../Order/Order";
 
-const Orders = () => {
+const Orders = ({search}) => {
     const dispatch = useDispatch();
     const {orders} = useSelector(state => state.order);
     const [query] = useSearchParams({page: '1'});
@@ -15,8 +15,10 @@ const Orders = () => {
 
 
     useEffect(() => {
-        dispatch(orderActions.getAll({page: query.get('page'), ordering: order.get('ordering')}));
-    }, [dispatch, query, order])
+        if (search.size === 1){
+            dispatch(orderActions.getAll({page: query.get('page'), ordering: order.get('ordering')}));
+        }
+    }, [dispatch, query, order, search])
 
     const sort = (field) => {
         let order_value = order.get('ordering')

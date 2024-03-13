@@ -12,18 +12,19 @@ const Paginate = () => {
     const handlePageClick = (e) => {
         let selectedPage = e.selected + 1;
 
-        if (order.get('ordering') !== 'null' ) {
-            setQuery({
-                ordering: order.get('ordering'),
-                page: selectedPage,
-            });}
-        else {
-
-            setQuery({
-                page: selectedPage,
+        if (order.get('ordering') !== 'null') {
+            setQuery((currentQuery) => {
+                currentQuery.set('ordering', order.get('ordering'));
+                currentQuery.set('page', selectedPage.toString());
+                return currentQuery;
             });
-
-        }};
+        } else {
+            setQuery((currentQuery) => {
+                currentQuery.set('page', selectedPage.toString());
+                return currentQuery;
+            });
+        }
+    };
 
     const pageCount = Math.ceil(total_pages);
     const forcePage = Math.min(pageCount - 1, parseInt(query.get('page') || 1) - 1);
