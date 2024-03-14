@@ -6,7 +6,7 @@ const Filter = ({search, setSearch}) => {
     return (
         <div className={css.main}>
             <FilterForm search={search} setSearch={setSearch}/>
-            <FilterOption/>
+            <FilterOption setSearch={setSearch}/>
         </div>
     )
 }

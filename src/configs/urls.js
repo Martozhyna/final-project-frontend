@@ -4,6 +4,7 @@ const orders = '/orders';
 const auth = '/auth';
 const comments = '/comments';
 const groups = '/groups';
+const users = '/users';
 
 const urls = {
     auth:{
@@ -19,6 +20,10 @@ const urls = {
     groups:{
         groups
     },
+    users:{
+        me: `${users}/me`
+    },
+
 };
 
 export {
