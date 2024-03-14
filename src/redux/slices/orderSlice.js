@@ -90,7 +90,6 @@ const orderSlice = createSlice({
                 state.orders = results;
                 // state.page = page;
                 state.offset = offset;
-                console.log(offset)
                 state.total_pages = total_pages;
                 // state.ordering = ordering
                 state.loading = false;

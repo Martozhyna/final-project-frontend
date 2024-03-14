@@ -21,13 +21,20 @@ const Orders = ({search}) => {
     }, [dispatch, query, order, search])
 
     const sort = (field) => {
-        let order_value = order.get('ordering')
+        let orderValue = order.get('ordering');
 
-        setOrder((value => ({ordering: +value.get('ordering')})));
-        setOrder(((value => ({ordering: field, page: 1}))))
+        setOrder((value) => {
+            const ordering = value.get('ordering') === field ? `-${field}` : field;
+            const page = search.get('page') || 1;
 
-        if (order_value === field) {
-            setOrder(((value => ({ordering: `-${field}`, page: 1}))))}};
+            const newOrder = new URLSearchParams(value.toString());
+            newOrder.set('ordering', ordering);
+            newOrder.set('page', page);
+
+            return newOrder;
+        });
+
+    };
 
     return (
         <div>

@@ -20,14 +20,17 @@ const FilterForm = ({search, setSearch}) => {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(orderActions.getAll(search))
+        if (search.size > 1){
+            dispatch(orderActions.getAll(search))
+        }
+
     }, [dispatch, search])
 
-    const submit = (data) => {
+    const submit = async (data) => {
         const cleanedData = Object.fromEntries(
             Object.entries(data).filter(([key, value]) => value !== "")
         );
-        Object.entries(cleanedData).forEach(([key, value]) => {
+        await Object.entries(cleanedData).forEach(([key, value]) => {
             setSearch((currentQuery) => {
                 const existingValues = currentQuery.getAll(key) || [];
                 const newValues = Array.isArray(value) ? value : [value];
@@ -79,12 +82,15 @@ const FilterForm = ({search, setSearch}) => {
                                              }))}/>
                 </div>
                 <div>
-                    <div className={css.contain}>
-                        <input type="date" className={css.input}/>
-                    </div>
-                    <div className={css.contain}>
-                        <input type="date" className={css.input}/>
-                    </div>
+                    <ModalFormInput type={'date'} name={'start_date'} label={'start_date'} addLabel={false} register={register}/>
+                    <ModalFormInput type={'date'} name={'end_date'} label={'end_date'} addLabel={false} register={register}/>
+                    {/*<div className={css.contain}>*/}
+                    {/*    <input type="date" className={css.input} />*/}
+                    {/*</div>*/}
+                    {/*<div className={css.contain}>*/}
+                    {/*    <input type="date" className={css.input}/>*/}
+                    {/*</div>*/}
+
                 </div>
             </div>
 
