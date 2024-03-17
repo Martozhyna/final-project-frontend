@@ -1,16 +1,13 @@
-import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
 
 import {ModalFormInput} from "../ModalFormInput/ModalFormInput";
 import css from './FilterForm.module.css';
 import {ModalFormWithChoice} from "../ModalFormWithChoice/ModalFormWithChoice";
 import {groupAction, orderActions} from "../../redux";
-import {useSearchParams} from "react-router-dom";
-import {useEffect} from "react";
 
-const FilterForm = ({search, setSearch}) => {
+const FilterForm = ({search, setSearch, register, handleSubmit}) => {
 
-    const {register, handleSubmit, setValue, reset} = useForm({mode:"all"})
     const { groups } = useSelector((state) => state.group);
     const {page} = useSelector(state => state.order)
     const dispatch = useDispatch();
@@ -34,15 +31,12 @@ const FilterForm = ({search, setSearch}) => {
             setSearch((currentQuery) => {
                 const existingValues = currentQuery.getAll(key) || [];
                 const newValues = Array.isArray(value) ? value : [value];
-
                 currentQuery.set(key, newValues);
                 currentQuery.set("page", page);
                 return currentQuery;
             });
         })
     }
-
-
 
     return (
         <form onChange={handleSubmit(submit)}>
@@ -84,14 +78,8 @@ const FilterForm = ({search, setSearch}) => {
                 <div>
                     <ModalFormInput type={'date'} name={'start_date'} label={'start_date'} addLabel={false} register={register}/>
                     <ModalFormInput type={'date'} name={'end_date'} label={'end_date'} addLabel={false} register={register}/>
-                    {/*<div className={css.contain}>*/}
-                    {/*    <input type="date" className={css.input} />*/}
-                    {/*</div>*/}
-                    {/*<div className={css.contain}>*/}
-                    {/*    <input type="date" className={css.input}/>*/}
-                    {/*</div>*/}
-
                 </div>
+
             </div>
 
         </form>

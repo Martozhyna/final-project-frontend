@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import {ordersService} from "../../services";
-import {groupReducer} from "./groupSlice";
 
 const initialState = {
     orders:[],
@@ -55,14 +54,6 @@ const updateById = createAsyncThunk(
     async (params, thunkAPI) => {
         try {
             const {data} = await ordersService.updateById(params.id, params.data);
-            // const {groups} = thunkAPI.getState().group
-            // console.log(groups)
-            // const idsArray = groups.map(group => group.id);
-            // console.log(idsArray)
-            // const g = groups.find((group) => group.id === data.group);
-            // console.log(data)
-            // console.log(g)
-
             return {
                 ...data,
 

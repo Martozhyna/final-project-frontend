@@ -1,12 +1,13 @@
-import css from './FilterOption.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {userActions} from "../../redux";
 
-const FilterOption = ({setSearch}) => {
+import css from './FilterOption.module.css';
+import {orderActions, userActions} from "../../redux";
+
+const FilterOption = ({setSearch, reset}) => {
+
     const { user } = useSelector((state) => state.user);
     const dispatch = useDispatch();
-
 
     useEffect(() => {
         dispatch(userActions.getMe())
@@ -21,10 +22,16 @@ const FilterOption = ({setSearch}) => {
 
     }
 
+    const reboot = () => {
+        reset()
+        setSearch(new URLSearchParams());
+        dispatch(orderActions.getAll({}));
+    }
+
     return (
         <div>
             <button className={css.btn} onClick={click}>My</button>
-            <button className={css.btn}>Reset</button>
+            <button className={css.btn} onClick={reboot}>Reset</button>
             <button className={css.btn}>Exel</button>
         </div>
     )

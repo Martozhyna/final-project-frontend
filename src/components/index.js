@@ -8,3 +8,8 @@ export * from './ModalFormInput/ModalFormInput.module.css';
 export * from './ModalConstruction/ModalConstruction';
 export * from './ModalForm/ModalForm';
 export * from './ModalOptionItem/ModalOptionItem';
+export * from './Filter/Filter';
+export * from './FilterOption/FilterOption';
+export * from './FilterForm/FilterForm';
+export * from './Header/Header';
+export * from './Headline/Headline';
