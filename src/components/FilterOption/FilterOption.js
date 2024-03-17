@@ -2,7 +2,6 @@ import css from './FilterOption.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {userActions} from "../../redux";
-import {current} from "@reduxjs/toolkit";
 
 const FilterOption = ({setSearch}) => {
     const { user } = useSelector((state) => state.user);
