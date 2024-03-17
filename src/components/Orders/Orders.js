@@ -10,7 +10,7 @@ import {Order} from "../Order/Order";
 const Orders = ({search}) => {
     const dispatch = useDispatch();
     const {orders} = useSelector(state => state.order);
-    const [query] = useSearchParams({page: '1'});
+    const [query, setQuery] = useSearchParams({page: '1'});
     const [order, setOrder] = useSearchParams({ordering: '-id'})
 
 
@@ -21,19 +21,26 @@ const Orders = ({search}) => {
     }, [dispatch, query, order, search])
 
     const sort = (field) => {
-        let orderValue = order.get('ordering');
+        let orderValue = order.get("ordering");
+
+        // Отримання поточної сторінки з параметрів URL
+        const currentPage = parseInt(query.get("page")) || 1;
 
         setOrder((value) => {
-            const ordering = value.get('ordering') === field ? `-${field}` : field;
-            const page = search.get('page') || 1;
+            const ordering = value.get("ordering") === field ? `-${field}` : field;
 
+            // Створення нових параметрів URL для посилання
             const newOrder = new URLSearchParams(value.toString());
-            newOrder.set('ordering', ordering);
-            newOrder.set('page', page);
+            newOrder.set("ordering", ordering);
+
+            // При зміні сортування сторінка має бути переведена на першу
+            newOrder.set("page", "1");
+
+            // Оновлення параметрів URL
+            setQuery(newOrder);
 
             return newOrder;
         });
-
     };
 
     return (
