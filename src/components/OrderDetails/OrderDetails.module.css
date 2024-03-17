@@ -24,11 +24,11 @@
     width: 70px;
     height: 50px;
     border-radius: 8px;
-    border: none;
     font-size: 16px;
     font-family: Snell Roundhand, cursive;
-    background: #845EC2;
-    color: white;
+    background: #D5CABD;
+    border: solid 2px #D5CABD;
+    color: #879789;
     cursor: pointer;
     transition-duration: 0.4s;
     margin: 5px;
@@ -37,8 +37,9 @@
 .btn:hover{
     /*width: 80px;*/
     /*height: 60px;*/
-    background: white;
-    color: #4E8397;
+    border: solid 2px #D5CABD;
+    background: #879789;
+    color: #D5CABD;
 }
 
 .text{

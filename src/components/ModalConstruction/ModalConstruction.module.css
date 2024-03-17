@@ -6,7 +6,7 @@
     max-height: 98%;
     transform: translate(-50%, -50%);
     overflow: auto;
-    background: #4E8397;
+    background: #AFB09F;
     border-radius: 20px;
     color: white;
     font-family: Snell Roundhand, cursive;
@@ -37,19 +37,20 @@
     width: 70px;
     height: 50px;
     border-radius: 8px;
-    border: none;
     font-size: 16px;
     font-family: Snell Roundhand, cursive;
-    background: #845EC2;
-    color: white;
+    background: #D5CABD;
+    border: solid 2px #D5CABD;
+    color: #879789;
     cursor: pointer;
     transition-duration: 0.4s;
     margin: 5px;
 }
 
 .btn:hover{
-    background: white;
-    color: #4E8397;
+    border: solid 2px #D5CABD;
+    background: #879789;
+    color: #D5CABD;
 }
 
 .btn2{
@@ -59,7 +60,7 @@
     border: none;
     font-size: 18px;
     font-family: Snell Roundhand, cursive;
-    background: #845EC2;
+    background: #879789;
     color: white;
     cursor: pointer;
     transition-duration: 0.4s;
