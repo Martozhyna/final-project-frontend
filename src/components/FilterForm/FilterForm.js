@@ -5,11 +5,14 @@
     import css from './FilterForm.module.css';
     import {ModalFormWithChoice} from "../ModalFormWithChoice/ModalFormWithChoice";
     import {groupAction, orderActions} from "../../redux";
+    import {useDebounce} from "../../hooks";
 
     const FilterForm = ({search, setSearch, register, handleSubmit}) => {
 
         const { groups } = useSelector((state) => state.group);
         const {page} = useSelector(state => state.order)
+        const debouncedSearchTerm = useDebounce(search, 500);
+        console.log(debouncedSearchTerm)
         const dispatch = useDispatch();
 
         useEffect(() => {
@@ -17,11 +20,11 @@
         }, [dispatch])
 
         useEffect(() => {
-            if (search.size > 1){
-                dispatch(orderActions.getAll(search))
+            if (search.size > 1 && debouncedSearchTerm.size > 1){
+                dispatch(orderActions.getAll(debouncedSearchTerm))
             }
 
-        }, [dispatch, search])
+        }, [dispatch, search, debouncedSearchTerm])
 
         const submit = async (data) => {
             const params = new URLSearchParams();
