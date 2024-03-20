@@ -23,9 +23,11 @@ const FilterOption = ({setSearch, reset}) => {
     }
 
     const reboot = () => {
-        reset()
-        setSearch(new URLSearchParams());
-        dispatch(orderActions.getAll({}));
+        reset();
+        const params = new URLSearchParams();
+        params.set("page", "1");
+        params.set("ordering", "-id");
+        setSearch(params);
     }
 
     return (

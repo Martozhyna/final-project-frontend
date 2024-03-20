@@ -18,7 +18,7 @@ const ModalForm = ({order, setIsOpen}) => {
     }, [dispatch])
 
 
-    const {register, handleSubmit, setValue, reset} = useForm({
+    const {register, handleSubmit, setValue} = useForm({
         mode: "onSubmit", defaultValues: {
             id: order.id,
             name: order.name,

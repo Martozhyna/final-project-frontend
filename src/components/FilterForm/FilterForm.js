@@ -24,18 +24,16 @@
         }, [dispatch, search])
 
         const submit = async (data) => {
-            const cleanedData = Object.fromEntries(
-                Object.entries(data).filter(([key, value]) => value !== "")
-            );
-            await Object.entries(cleanedData).forEach(([key, value]) => {
-                setSearch((currentQuery) => {
-                    const existingValues = currentQuery.getAll(key) || [];
-                    const newValues = Array.isArray(value) ? value : [value];
-                    currentQuery.set(key, newValues);
-                    currentQuery.set("page", page);
-                    return currentQuery;
-                });
-            })
+            const params = new URLSearchParams();
+
+            Object.entries(data).forEach(([key, value]) => {
+                if (value !== "") {
+                    params.append(key, value);
+                }
+            });
+
+            params.set("page", page);
+            setSearch(params);
         }
 
         return (

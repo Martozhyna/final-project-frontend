@@ -14,6 +14,7 @@ const Orders = ({search}) => {
     const [query, setQuery] = useSearchParams({page: '1'});
     const [order, setOrder] = useSearchParams({ordering: '-id'})
 
+
     useEffect(() => {
         if (search.size === 1){
             dispatch(orderActions.getAll({page: query.get('page'), ordering: order.get('ordering')}));
@@ -21,8 +22,6 @@ const Orders = ({search}) => {
     }, [dispatch, query, order, search])
 
     const sort = (field) => {
-        let orderValue = order.get("ordering");
-        const currentPage = parseInt(query.get("page")) || 1;
 
         setOrder((value) => {
             const ordering = value.get("ordering") === field ? `-${field}` : field;
