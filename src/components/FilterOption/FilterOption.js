@@ -2,9 +2,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 
 import css from './FilterOption.module.css';
-import {orderActions, userActions} from "../../redux";
+import {userActions} from "../../redux";
 
-const FilterOption = ({setSearch, reset}) => {
+const FilterOption = ({setSearch, reset, handleReset}) => {
 
     const { user } = useSelector((state) => state.user);
     const dispatch = useDispatch();
@@ -22,18 +22,18 @@ const FilterOption = ({setSearch, reset}) => {
 
     }
 
-    const reboot = () => {
-        reset();
-        const params = new URLSearchParams();
-        params.set("page", "1");
-        params.set("ordering", "-id");
-        setSearch(params);
-    }
+    // const reboot = () => {
+    //     reset();
+    //     const params = new URLSearchParams();
+    //     params.set("page", "1");
+    //     params.set("ordering", "-id");
+    //     setSearch(params);
+    // }
 
     return (
         <div>
             <button className={css.btn} onClick={click}>My</button>
-            <button className={css.btn} onClick={reboot}>Reset</button>
+            <button className={css.btn} onClick={handleReset}>Reset</button>
             <button className={css.btn}>Exel</button>
         </div>
     )
