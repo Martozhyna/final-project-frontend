@@ -9,7 +9,7 @@ const initialState = {
     ordering: null,
     comments: [],
     errors: null,
-    loading: null
+    loading: false
 };
 
 const getAll = createAsyncThunk(

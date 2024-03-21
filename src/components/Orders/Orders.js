@@ -9,7 +9,7 @@ import { Order } from "../Order/Order";
 
 const Orders = ({ search }) => {
     const dispatch = useDispatch();
-    const { orders } = useSelector((state) => state.order);
+    const { orders, loading } = useSelector((state) => state.order);
     const [query, setQuery] = useSearchParams({ page: "1" });
     const [order, setOrder] = useSearchParams({ ordering: "-id" });
     const [openedOrderId, setOpenedOrderId] = useState(null);

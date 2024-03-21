@@ -12,7 +12,6 @@
         const { groups } = useSelector((state) => state.group);
         const {page} = useSelector(state => state.order)
         const debouncedSearchTerm = useDebounce(search, 500);
-        console.log(debouncedSearchTerm)
         const dispatch = useDispatch();
 
         useEffect(() => {

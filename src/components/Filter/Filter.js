@@ -24,7 +24,7 @@ const Filter = ({search, setSearch}) => {
 
         const params = new URLSearchParams();
         params.set("page", "1");
-        params.set("ordering", "-id");
+        // params.set("ordering", "-id");
         setSearch(params);
 
         reset();
