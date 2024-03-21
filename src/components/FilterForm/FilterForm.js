@@ -19,11 +19,11 @@
         }, [dispatch])
 
         useEffect(() => {
-            if (search.size > 1 && debouncedSearchTerm.size > 1){
+            if (debouncedSearchTerm.size > 1){
                 dispatch(orderActions.getAll(debouncedSearchTerm))
             }
 
-        }, [dispatch, search, debouncedSearchTerm])
+        }, [dispatch,  debouncedSearchTerm])
 
         const submit = async (data) => {
             const params = new URLSearchParams();
