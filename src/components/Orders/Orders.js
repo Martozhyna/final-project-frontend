@@ -6,6 +6,7 @@ import { orderActions } from "../../redux";
 import css from "./Orders.module.css";
 import { Paginate } from "../Paginate/Paginate";
 import { Order } from "../Order/Order";
+import {Loader} from "../Loader/Loader";
 
 const Orders = ({ search }) => {
     const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const Orders = ({ search }) => {
 
     return (
         <div>
-            {orders && (
+            {loading ? <Loader/> : orders && (
                 <table className={css.table}>
                     <thead>
                     <tr className={css.th_list}>
