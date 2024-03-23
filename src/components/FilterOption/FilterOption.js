@@ -22,13 +22,6 @@ const FilterOption = ({setSearch, reset, handleReset}) => {
 
     }
 
-    // const reboot = () => {
-    //     reset();
-    //     const params = new URLSearchParams();
-    //     params.set("page", "1");
-    //     params.set("ordering", "-id");
-    //     setSearch(params);
-    // }
 
     return (
         <div>

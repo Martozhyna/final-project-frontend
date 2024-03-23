@@ -33,8 +33,13 @@
                     params.append(key, value);
                 }
             });
-
+            const ordering = search.get("ordering") || "-id";
             params.set("page", page);
+            params.set("ordering", ordering);
+            if (search.has('manager')){
+                const manager = search.get('manager')
+                params.set('manager', manager)
+            }
             setSearch(params);
         }
 
