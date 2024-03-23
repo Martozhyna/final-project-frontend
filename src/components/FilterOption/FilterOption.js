@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 import css from './FilterOption.module.css';
 import {userActions} from "../../redux";
@@ -7,6 +7,7 @@ import {userActions} from "../../redux";
 const FilterOption = ({setSearch, reset, handleReset}) => {
 
     const { user } = useSelector((state) => state.user);
+    const [showMyOrders, setShowMyOrders] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -15,10 +16,15 @@ const FilterOption = ({setSearch, reset, handleReset}) => {
 
     const click = () => {
         setSearch((currentQuery) => {
-            currentQuery.set("manager", user.surname)
-            return currentQuery
-        })
-        console.log(user.surname)
+            const query = new URLSearchParams(currentQuery);
+            if (!showMyOrders) {
+                query.set('manager', user.surname);
+            } else {
+                query.delete('manager');
+            }
+            return query;
+        });
+        setShowMyOrders(!showMyOrders);
 
     }
 
