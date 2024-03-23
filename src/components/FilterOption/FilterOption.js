@@ -31,7 +31,7 @@ const FilterOption = ({setSearch, reset, handleReset}) => {
 
     return (
         <div>
-            <button className={css.btn} onClick={click}>My</button>
+            <button className={showMyOrders ? `${css.btn} ${css.active}` : css.btn} onClick={click}>My</button>
             <button className={css.btn} onClick={handleReset}>Reset</button>
             <button className={css.btn}>Exel</button>
         </div>
