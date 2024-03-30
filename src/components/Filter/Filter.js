@@ -32,7 +32,7 @@ const Filter = ({search, setSearch}) => {
 
     return (
         <div className={css.main}>
-            <FilterForm search={search} setSearch={setSearch} register={register} handleSubmit={handleSubmit}/>
+            <FilterForm search={search} setSearch={setSearch} register={register} handleSubmit={handleSubmit} setValue={setValue}/>
             <FilterOption setSearch={setSearch} reset={reset} handleReset={handleReset}/>
         </div>
     )

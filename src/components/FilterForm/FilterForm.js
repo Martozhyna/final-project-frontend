@@ -7,12 +7,29 @@
     import {groupAction, orderActions} from "../../redux";
     import {useDebounce} from "../../hooks";
 
-    const FilterForm = ({search, setSearch, register, handleSubmit}) => {
+    const FilterForm = ({search, setSearch, register, handleSubmit, setValue}) => {
 
         const { groups } = useSelector((state) => state.group);
         const {page} = useSelector(state => state.order)
         const debouncedSearchTerm = useDebounce(search, 500);
         const dispatch = useDispatch();
+
+        useEffect(() => {
+            const params = new URLSearchParams(search);
+            setValue("name", params.get("name") || "");
+            setValue("surname", params.get("surname") || "");
+            setValue("email", params.get("email") || "");
+            setValue("phone", params.get("phone") || "");
+            setValue("age", params.get("age") || "");
+            setValue("course", params.get("course") || "");
+            setValue("course_format", params.get("course_format") || "");
+            setValue("course_type", params.get("course_type") || "");
+            setValue("status", params.get("status") || "");
+            setValue("group", params.get("group") || "");
+            setValue("start_date", params.get("start_date") || "");
+            setValue("end_date", params.get("end_date") || "");
+        }, [search, setValue]);
+
 
         useEffect(() => {
             dispatch(groupAction.getAll());
