@@ -3,10 +3,12 @@ import {useForm} from "react-hook-form";
 import {FilterForm} from "../FilterForm/FilterForm";
 import {FilterOption} from "../FilterOption/FilterOption";
 import css from './Filter.module.css';
+import {useState} from "react";
 
 const Filter = ({search, setSearch}) => {
 
     const {register, handleSubmit, reset, setValue} = useForm({mode:"all"})
+    const [showMyOrders, setShowMyOrders] = useState(false);
 
     const handleReset = () => {
         setValue("name", "");
@@ -21,6 +23,7 @@ const Filter = ({search, setSearch}) => {
         setValue("group", "");
         setValue("start_date", "");
         setValue("end_date", "");
+        setShowMyOrders(false)
 
         const params = new URLSearchParams();
         params.set("page", "1");
@@ -33,7 +36,7 @@ const Filter = ({search, setSearch}) => {
     return (
         <div className={css.main}>
             <FilterForm search={search} setSearch={setSearch} register={register} handleSubmit={handleSubmit} setValue={setValue}/>
-            <FilterOption setSearch={setSearch} reset={reset} handleReset={handleReset}/>
+            <FilterOption setSearch={setSearch} reset={reset} handleReset={handleReset} setShowMyOrders={setShowMyOrders} showMyOrders={showMyOrders}/>
         </div>
     )
 }
