@@ -3,10 +3,26 @@ import { useEffect} from "react";
 
 import css from './FilterOption.module.css';
 import { userActions } from "../../redux";
+import {useLocation} from "react-router-dom";
+import queryString from "query-string";
+import {ordersService} from "../../services";
 
 const FilterOption = ({ setSearch, reset, handleReset, setShowMyOrders, showMyOrders }) => {
     const { user } = useSelector((state) => state.user);
     const dispatch = useDispatch();
+    const location = useLocation();
+
+    const downloadExcel = async () => {
+        const queries = queryString.parse(location.search);
+        const { data } = await ordersService.getExcel(queries);
+        const fileName = `Order from ${new Date().toLocaleDateString()}.xls`;
+        const url = window.URL.createObjectURL(new Blob([data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", fileName);
+        document.body.appendChild(link);
+        link.click();
+    };
 
     useEffect(() => {
         dispatch(userActions.getMe())
@@ -34,7 +50,7 @@ const FilterOption = ({ setSearch, reset, handleReset, setShowMyOrders, showMyOr
         <div>
             <button className={showMyOrders ? `${css.btn} ${css.active}` : css.btn} onClick={click}>My</button>
             <button className={css.btn} onClick={handleReset}>Reset</button>
-            <button className={css.btn}>Excel</button>
+            <button className={css.btn} onClick={downloadExcel}>Excel</button>
         </div>
     );
 }
