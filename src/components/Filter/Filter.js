@@ -1,9 +1,9 @@
 import {useForm} from "react-hook-form";
+import {useState} from "react";
 
 import {FilterForm} from "../FilterForm/FilterForm";
 import {FilterOption} from "../FilterOption/FilterOption";
 import css from './Filter.module.css';
-import {useState} from "react";
 
 const Filter = ({search, setSearch}) => {
 
