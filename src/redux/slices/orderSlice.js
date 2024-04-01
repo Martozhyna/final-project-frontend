@@ -10,7 +10,7 @@ const initialState = {
     comments: [],
     orders_statistics: [],
     errors: null,
-    loading: false
+    loading: false,
 };
 
 const getAll = createAsyncThunk(

@@ -7,11 +7,12 @@ const OrdersPage = () => {
     const [search, setSearch] = useSearchParams({ page: "1" });
 
 
+
     return (
         <div>
-            <Header search={search} setSearch={setSearch}/>
+            <Header search={search} setSearch={setSearch} />
 
-            <Orders search={search}/>
+            <Orders search={search} />
         </div>
     )
 };

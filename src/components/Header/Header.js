@@ -4,7 +4,7 @@ import {Filter} from "../Filter/Filter";
 const Header = ({search, setSearch}) => {
     return (
         <div>
-            <Headline />
+            <Headline/>
             <Filter search={search} setSearch={setSearch}/>
         </div>
     )

@@ -1,11 +1,18 @@
 import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import Modal from 'react-modal';
 
 import css from "../../components/Headline/Headline.module.css";
-import {OrderStatistics} from "../../components";
+import {OrderCreateForm, OrderStatistics} from "../../components";
 
+
+Modal.setAppElement('#root')
 
 const AdminPage = () => {
     const navigate = useNavigate();
+    const [open, setOpen] = useState(false)
+
+
     return (
         <div>
             <div className={css.main}>
@@ -19,6 +26,20 @@ const AdminPage = () => {
                 </div>
             </div>
             <OrderStatistics/>
+            <button className={css.btn} onClick={() => setOpen(true)}>Create</button>
+            <Modal isOpen={open}
+                   className={`${css.modalCustom}`}
+                   overlayClassName={css.overlay}
+                   contentLabel="Example ModalConstruction">
+                <div >
+                    <OrderCreateForm/>
+
+
+                </div>
+                <div className={css.btns}>
+                    <button className={css.btn2} onClick={() => setOpen(false)}>Close</button>
+                </div>
+            </Modal>
         </div>
 
 

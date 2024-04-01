@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 
 import {AuthRequireLayout, MainLayout} from "./layouts";
@@ -6,6 +6,7 @@ import {LoginPage, OrdersPage, AdminPage} from "./pages";
 
 
 const App = () => {
+
   return (
       <Routes>
 
@@ -18,7 +19,7 @@ const App = () => {
               </Route>
 
               <Route path={'login'} element={<LoginPage/>}/>
-              <Route path={'admin'} element={<AdminPage/>}/>
+              <Route path={'admin'} element={<AdminPage />}/>
 
           </Route>
 
