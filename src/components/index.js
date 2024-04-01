@@ -13,3 +13,4 @@ export * from './FilterOption/FilterOption';
 export * from './FilterForm/FilterForm';
 export * from './Header/Header';
 export * from './Headline/Headline';
+export * from './OrderStatistics/OrderStatistics';

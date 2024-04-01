@@ -1,0 +1,13 @@
+.statistic{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 25%;
+    border: 5px solid #879789;
+    border-radius: 20px;
+    background: #AFB09F;
+    color: white;
+    font-family: Snell Roundhand, cursive;
+    margin-top: 30px;
+    margin-left: 36%;
+}

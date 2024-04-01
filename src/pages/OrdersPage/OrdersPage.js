@@ -10,6 +10,7 @@ const OrdersPage = () => {
     return (
         <div>
             <Header search={search} setSearch={setSearch}/>
+
             <Orders search={search}/>
         </div>
     )

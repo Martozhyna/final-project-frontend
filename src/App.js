@@ -2,7 +2,8 @@ import React from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 
 import {AuthRequireLayout, MainLayout} from "./layouts";
-import {LoginPage, OrdersPage} from "./pages";
+import {LoginPage, OrdersPage, AdminPage} from "./pages";
+
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
               </Route>
 
               <Route path={'login'} element={<LoginPage/>}/>
+              <Route path={'admin'} element={<AdminPage/>}/>
 
           </Route>
 

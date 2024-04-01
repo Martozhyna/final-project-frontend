@@ -8,6 +8,7 @@ const initialState = {
     page: 1,
     ordering: null,
     comments: [],
+    orders_statistics: [],
     errors: null,
     loading: false
 };
@@ -62,6 +63,18 @@ const updateById = createAsyncThunk(
         } catch (e) {
 
             return thunkAPI.rejectWithValue(e.response.data)
+        }
+    }
+);
+
+const getOrdersStatistics = createAsyncThunk(
+    'orderSlice/getOrdersStatistics',
+    async (_, {rejectWithValue}) => {
+        try {
+            const {data} = await ordersService.getStatistics();
+            return data
+        } catch (e) {
+            return rejectWithValue(e.response.data)
         }
     }
 );
@@ -126,6 +139,10 @@ const orderSlice = createSlice({
             .addCase(updateById.pending, (state, action) => {
                 state.loading = true;
             })
+            .addCase(getOrdersStatistics.fulfilled, (state, action) => {
+                state.orders_statistics = action.payload
+                state.loading = false
+            })
 
 });
 
@@ -136,7 +153,8 @@ const orderActions = {
     getOrdering,
     createComment,
     getAllComments,
-    updateById
+    updateById,
+    getOrdersStatistics
 };
 
 export {
