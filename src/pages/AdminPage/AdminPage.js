@@ -3,7 +3,7 @@ import {useState} from "react";
 import Modal from 'react-modal';
 
 import css from "../../components/Headline/Headline.module.css";
-import {OrderCreateForm, OrderStatistics} from "../../components";
+import {OrderCreateForm, OrderStatistics, Users} from "../../components";
 
 
 Modal.setAppElement('#root')
@@ -40,6 +40,7 @@ const AdminPage = () => {
                     <button className={css.btn2} onClick={() => setOpen(false)}>Close</button>
                 </div>
             </Modal>
+            <Users/>
         </div>
 
 

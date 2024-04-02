@@ -22,7 +22,8 @@ const urls = {
         groups
     },
     users:{
-        me: `${users}/me`
+        me: `${users}/me`,
+        users
     },
 
 };

@@ -13,7 +13,7 @@ const OrderStatistics = () => {
     }, [dispatch])
 
     const status_statistics = orders_statistics[0]
-    console.log(status_statistics);
+
     return (
         <div>
             {status_statistics &&

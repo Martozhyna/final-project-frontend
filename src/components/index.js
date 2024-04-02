@@ -15,3 +15,5 @@ export * from './Header/Header';
 export * from './Headline/Headline';
 export * from './OrderStatistics/OrderStatistics';
 export * from './OrderCreateForm/OrderCreateForm';
+export * from './Users/Users';
+export * from './User/User';
