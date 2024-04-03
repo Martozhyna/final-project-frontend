@@ -3,8 +3,20 @@ import dateformat from "dateformat";
 import css from './User.module.css';
 import style from '../Headline/Headline.module.css'
 import {UserStatistics} from "../UserStatistics/UserStatistics";
+import {useDispatch} from "react-redux";
+import {userActions, userActions as usersActions} from "../../redux";
 
 const User = ({ user, userStatistic }) => {
+    const dispatch = useDispatch()
+
+    const banUser = () => {
+        dispatch(usersActions.banUser(user.id))
+    }
+
+    const unbanUser = () => {
+        dispatch(userActions.unbanUser(user.id))
+    }
+
     return (
         <div className={css.card}>
             <div>
@@ -22,8 +34,8 @@ const User = ({ user, userStatistic }) => {
 
             <div className={style.btns}>
                 <button className={style.btn}>Activate</button>
-                <button className={style.btn}>Ban</button>
-                <button className={style.btn}>Unban</button>
+                <button className={style.btn} onClick={banUser}>Ban</button>
+                <button className={style.btn} onClick={unbanUser}>Unban</button>
             </div>
         </div>
     );

@@ -49,6 +49,38 @@ const getUserStatistic = createAsyncThunk(
     }
 );
 
+const banUser = createAsyncThunk(
+    "userSlice/banUser",
+    async (id, { rejectWithValue, getState }) => {
+        try {
+
+            const { data } = await usersService.banUser(id);
+            return data;
+
+        }
+        catch (e) {
+            return rejectWithValue(e.response.data);
+        }
+    }
+);
+
+const unbanUser = createAsyncThunk(
+    "userSlice/unbanUser",
+    async (id, { rejectWithValue, getState }) => {
+        try {
+
+            const { data } = await usersService.unbanUser(id);
+            return data;
+
+        }
+        catch (e) {
+            return rejectWithValue(e.response.data);
+        }
+    }
+);
+
+
+
 
 const userSlice = createSlice({
     name: 'userSlice',
@@ -66,8 +98,14 @@ const userSlice = createSlice({
             })
             .addCase(getUserStatistic.fulfilled, (state, action) => {
                 state.userStatistic = action.payload.statistics;
-
-
+            })
+            .addCase(banUser.fulfilled, (state, action) => {
+                const user = state.users.find(user => user.id === action.payload.id);
+                user.is_active = action.payload.is_active;
+            })
+            .addCase(unbanUser.fulfilled, (state, action) => {
+                const user = state.users.find(user => user.id === action.payload.id);
+                user.is_active = action.payload.is_active;
             })
 
 
@@ -78,7 +116,9 @@ const {reducer: userReducer,} = userSlice;
 const userActions = {
     getMe,
     getAllUsers,
-    getUserStatistic
+    getUserStatistic,
+    banUser,
+    unbanUser,
 };
 
 export {
