@@ -9,6 +9,14 @@ const Users = () => {
     const dispatch = useDispatch();
     const { users } = useSelector((state) => state.user);
     const [query, setQuery] = useSearchParams({ page: "1" });
+    const { userStatistic } = useSelector((state) => state.user);
+    useEffect(() => {
+        if (!userStatistic){
+            dispatch(userActions.getUserStatistic());
+        }
+
+    }, [dispatch, userStatistic]);
+
 
     useEffect(() => {
         dispatch(userActions.getAllUsers({page: query.get('page')}))
@@ -16,7 +24,7 @@ const Users = () => {
     return (
         <div>
             {
-              users &&  users.map((user) => (<User user={user} key={user.id}/>))
+              users &&  users.map((user) => (<User user={user} key={user.id} userStatistic={userStatistic}/>))
             }
         </div>
     )

@@ -23,7 +23,9 @@ const urls = {
     },
     users:{
         me: `${users}/me`,
-        users
+        users,
+        statistics: `${users}/statistics`
+
     },
 
 };

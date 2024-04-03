@@ -17,3 +17,4 @@ export * from './OrderStatistics/OrderStatistics';
 export * from './OrderCreateForm/OrderCreateForm';
 export * from './Users/Users';
 export * from './User/User';
+export * from './OrderStatistics/OrderStatistics';
