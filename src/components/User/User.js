@@ -33,7 +33,7 @@ const User = ({ user, userStatistic }) => {
             </div>
 
             <div className={style.btns}>
-                <button className={style.btn}>Activate</button>
+                <button className={style.btn}>{user.is_active ? 'Recovery password' : 'Activate'}</button>
                 <button className={style.btn} onClick={banUser}>Ban</button>
                 <button className={style.btn} onClick={unbanUser}>Unban</button>
             </div>
