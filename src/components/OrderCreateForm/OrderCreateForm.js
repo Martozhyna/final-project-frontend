@@ -12,12 +12,8 @@ const OrderCreateForm = ({setOpen}) => {
 
     const create = (data) => {
         console.log(data)
-        const user = {
-            email: data.email,
-            name: data.name,
-            surname: data.surname
-        }
-        dispatch(userActions.createUser(user))
+
+        dispatch(userActions.createUser(data))
         setOpen(false)
 
     }

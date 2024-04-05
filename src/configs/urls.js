@@ -11,7 +11,9 @@ const urls = {
     auth:{
         login:`${auth}/login`,
         refresh:`${auth}/refresh`,
-        register: `${auth}/register`
+        register: `${auth}/register`,
+        activate: `${auth}/activate`,
+        auth: auth
     },
     orders:{
         orders

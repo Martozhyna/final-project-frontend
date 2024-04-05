@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import {usersService} from "../../services";
+import {createBrowserHistory} from "history";
 
 const initialState = {
     user: [],
@@ -97,6 +98,24 @@ const createUser = createAsyncThunk(
 
 
 
+const activateUser = createAsyncThunk(
+    "userSlice/activateUser",
+    async ({token, password}, { rejectWithValue}) => {
+        try {
+
+            const { data } = await usersService.createUser(token, password);
+            return data;
+
+        }
+        catch (e) {
+            return rejectWithValue(e.response.data);
+        }
+    }
+);
+
+
+
+
 
 const userSlice = createSlice({
     name: 'userSlice',
@@ -125,6 +144,13 @@ const userSlice = createSlice({
             })
             .addCase(createUser.fulfilled, (state, action) => {
                 state.users.unshift(action.payload)
+            })
+            .addCase(activateUser.fulfilled, (state, action) => {
+                const history = createBrowserHistory();
+                history.replace("/login");
+            })
+            .addCase(activateUser.rejected, (state, action) => {
+                state.error = action.payload;
             })
 
 
