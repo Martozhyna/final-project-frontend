@@ -10,7 +10,8 @@ const users = '/users';
 const urls = {
     auth:{
         login:`${auth}/login`,
-        refresh:`${auth}/refresh`
+        refresh:`${auth}/refresh`,
+        register: `${auth}/register`
     },
     orders:{
         orders

@@ -2,12 +2,28 @@ import {ModalFormInput} from "../ModalFormInput/ModalFormInput";
 import {useForm} from "react-hook-form";
 
 import css from '../Headline/Headline.module.css';
+import {useDispatch} from "react-redux";
+import {userActions} from "../../redux";
 
-const OrderCreateForm = () => {
+const OrderCreateForm = ({setOpen}) => {
 
-    const {register, handleSubmit, setValue} = useForm()
+    const {register, handleSubmit, setValue} = useForm({mode: 'all'})
+    const dispatch = useDispatch();
+
+    const create = (data) => {
+        console.log(data)
+        const user = {
+            email: data.email,
+            name: data.name,
+            surname: data.surname
+        }
+        dispatch(userActions.createUser(user))
+        setOpen(false)
+
+    }
+
     return (
-        <div>
+        <form onSubmit={handleSubmit(create)}>
             <div>
                 <ModalFormInput type={'text'} name={'email'} label={'email'} register={register}/>
             </div>
@@ -20,7 +36,7 @@ const OrderCreateForm = () => {
             <div className={css.btns}>
                 <button className={css.btn2}>Save</button>
             </div>
-        </div>
+        </form>
 
     )
 }

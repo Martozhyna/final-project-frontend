@@ -79,6 +79,22 @@ const unbanUser = createAsyncThunk(
     }
 );
 
+const createUser = createAsyncThunk(
+    "userSlice/createUser",
+    async (user, { rejectWithValue}) => {
+        try {
+
+            const { data } = await usersService.createUser(user);
+            return data;
+
+        }
+        catch (e) {
+            return rejectWithValue(e.response.data);
+        }
+    }
+);
+
+
 
 
 
@@ -107,6 +123,9 @@ const userSlice = createSlice({
                 const user = state.users.find(user => user.id === action.payload.id);
                 user.is_active = action.payload.is_active;
             })
+            .addCase(createUser.fulfilled, (state, action) => {
+                state.users.unshift(action.payload)
+            })
 
 
 });
@@ -119,6 +138,7 @@ const userActions = {
     getUserStatistic,
     banUser,
     unbanUser,
+    createUser
 };
 
 export {

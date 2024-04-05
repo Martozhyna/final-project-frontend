@@ -32,7 +32,7 @@ const AdminPage = () => {
                    overlayClassName={css.overlay}
                    contentLabel="Example ModalConstruction">
                 <div >
-                    <OrderCreateForm/>
+                    <OrderCreateForm setOpen={setOpen}/>
 
 
                 </div>
