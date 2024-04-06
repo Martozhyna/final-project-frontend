@@ -13,13 +13,13 @@ const FilterOption = ({ setSearch, reset, handleReset, setShowMyOrders, showMyOr
     const location = useLocation();
 
     const downloadExcel = async () => {
-        const queries = queryString.parse(location.search);
-        const { data } = await ordersService.getExcel(queries);
-        const fileName = `Order from ${new Date().toLocaleDateString()}.xls`;
+        const query = queryString.parse(location.search);
+        const { data } = await ordersService.getExcel(query);
+        const name = `Order from ${new Date().toLocaleDateString()}.xls`;
         const url = window.URL.createObjectURL(new Blob([data]));
         const link = document.createElement("a");
         link.href = url;
-        link.setAttribute("download", fileName);
+        link.setAttribute("download", name);
         document.body.appendChild(link);
         link.click();
     };
