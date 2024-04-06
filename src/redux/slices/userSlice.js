@@ -96,8 +96,6 @@ const createUser = createAsyncThunk(
 );
 
 
-
-
 const activateUser = createAsyncThunk(
     "userSlice/activateUser",
     async ({token, password}, { rejectWithValue}) => {
@@ -112,8 +110,19 @@ const activateUser = createAsyncThunk(
     }
 );
 
+const recoveryPassword = createAsyncThunk(
+    "userSlice/recoveryPassword",
+    async ({token, password}, { rejectWithValue}) => {
+        try {
+            const { data } = await usersService.recoveryPassword(token, password);
+            return data;
+        }
+        catch (e) {
 
-
+            return rejectWithValue(e.response.data);
+        }
+    }
+);
 
 
 const userSlice = createSlice({
@@ -151,6 +160,10 @@ const userSlice = createSlice({
             .addCase(activateUser.rejected, (state, action) => {
                 state.error = action.payload;
             })
+            .addCase(recoveryPassword.fulfilled, (state, action) => {
+                const history = createBrowserHistory();
+                history.replace("/login");
+            })
 
 
 });
@@ -164,7 +177,8 @@ const userActions = {
     banUser,
     unbanUser,
     createUser,
-    activateUser
+    activateUser,
+    recoveryPassword,
 };
 
 export {

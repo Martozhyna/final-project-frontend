@@ -1,22 +1,22 @@
-import css from "../LoginPage/LodinPage.module.css";
-import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { userActions } from "../../redux";
+import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {activateUserValidator} from "../../validators/activateUserValidator";
+import {useNavigate, useParams} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {userActions} from "../../redux";
+import css from "../LoginPage/LodinPage.module.css";
 
-const ActivateUserPage = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
+const RecoveryPasswordPage = () => {
+    const {register, handleSubmit, formState: {errors}} = useForm({
         mode: "all", resolver: yupResolver(activateUserValidator)
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { token } = useParams();
+    const {token} = useParams();
 
     const activate = async (data) => {
         const password = data.password
-       await dispatch(userActions.activateUser({token: token, password: password}));
+        await dispatch(userActions.recoveryPassword({token: token, password: password}));
         navigate('/login')
     }
 
@@ -44,5 +44,4 @@ const ActivateUserPage = () => {
         </form>
     );
 }
-
-export { ActivateUserPage }
+export {RecoveryPasswordPage}

@@ -22,6 +22,11 @@ const User = ({ user, userStatistic }) => {
         await usersService.getActivate(user.id)
     }
 
+    const recovery = async () => {
+        await usersService.getRecoverPasswordToken(user.email)
+
+    }
+
     return (
         <div className={css.card}>
             <div>
@@ -38,7 +43,7 @@ const User = ({ user, userStatistic }) => {
             </div>
 
             <div className={style.btns}>
-                <button className={style.btn} onClick={activate}>{user.is_active ? 'Recovery password' : 'Activate'}</button>
+                <button className={style.btn} onClick={user.is_active ? recovery : activate}>{user.is_active ? 'Recovery password' : 'Activate'}</button>
                 <button className={style.btn} onClick={banUser}>Ban</button>
                 <button className={style.btn} onClick={unbanUser}>Unban</button>
             </div>
