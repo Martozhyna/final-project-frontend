@@ -8,6 +8,7 @@ const initialState = {
     users: [],
     total_pages: null,
     userStatistic: null,
+    page: 1
 
 };
 
