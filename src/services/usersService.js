@@ -9,7 +9,7 @@ const usersService = {
     unbanUser: (id) => axiosService.patch(`${urls.users.users}/${id}/unban`),
     createUser: (user) => axiosService.post(urls.auth.register, user),
     getActivate: (id) => axiosService.get(`${urls.auth.auth}/${id}/register`),
-    activateUser: (token, password) => axiosService.get(`${urls.auth.activate}/${token}`, {password})
+    activateUser: (token, password) => axiosService.post(`${urls.auth.activate}/${token}`, {password})
 
 
 };

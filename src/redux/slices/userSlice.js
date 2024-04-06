@@ -7,7 +7,7 @@ const initialState = {
     user: [],
     users: [],
     total_pages: null,
-    userStatistic: null
+    userStatistic: null,
 
 };
 
@@ -102,12 +102,11 @@ const activateUser = createAsyncThunk(
     "userSlice/activateUser",
     async ({token, password}, { rejectWithValue}) => {
         try {
-
-            const { data } = await usersService.createUser(token, password);
+            const { data } = await usersService.activateUser(token, password);
             return data;
-
         }
         catch (e) {
+
             return rejectWithValue(e.response.data);
         }
     }
@@ -164,7 +163,8 @@ const userActions = {
     getUserStatistic,
     banUser,
     unbanUser,
-    createUser
+    createUser,
+    activateUser
 };
 
 export {

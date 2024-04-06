@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 
 import {AuthRequireLayout, MainLayout} from "./layouts";
-import {LoginPage, OrdersPage, AdminPage} from "./pages";
+import {LoginPage, OrdersPage, AdminPage, ActivateUserPage} from "./pages";
 
 
 const App = () => {
@@ -20,6 +20,7 @@ const App = () => {
 
               <Route path={'login'} element={<LoginPage/>}/>
               <Route path={'admin'} element={<AdminPage />}/>
+              <Route path="/activate/:token" element={<ActivateUserPage/>}/>
 
           </Route>
 
