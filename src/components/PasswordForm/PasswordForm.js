@@ -1,26 +1,13 @@
-import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 
-import css from "../LoginPage/LodinPage.module.css";
-import { userActions } from "../../redux";
+import css from "../../pages/LoginPage/LodinPage.module.css";
 import {activateUserValidator} from "../../validators/activateUserValidator";
 
-const ActivateUserPage = () => {
+const PasswordForm = (activate) => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "all", resolver: yupResolver(activateUserValidator)
     });
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { token } = useParams();
-
-    const activate = async (data) => {
-        const password = data.password
-       await dispatch(userActions.activateUser({token: token, password: password}));
-        navigate('/login')
-    }
-
     return (
         <form onSubmit={handleSubmit(activate)}>
             <div className={css.card}>
@@ -43,7 +30,6 @@ const ActivateUserPage = () => {
                 </div>
             </div>
         </form>
-    );
+    )
 }
-
-export { ActivateUserPage }
+export {PasswordForm}

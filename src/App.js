@@ -1,10 +1,7 @@
-import React, {useState} from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 
 import {AuthRequireLayout, MainLayout} from "./layouts";
-import {LoginPage, OrdersPage, AdminPage, ActivateUserPage} from "./pages";
-import {RecoveryPasswordPage} from "./pages/RecoveryPasswordPage/RecoveryPasswordPage";
-
+import {LoginPage, OrdersPage, AdminPage, ActivateUserPage, RecoveryPasswordPage} from "./pages";
 
 const App = () => {
 

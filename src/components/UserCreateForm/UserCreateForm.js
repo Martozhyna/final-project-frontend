@@ -1,21 +1,18 @@
 import {ModalFormInput} from "../ModalFormInput/ModalFormInput";
 import {useForm} from "react-hook-form";
+import {useDispatch} from "react-redux";
 
 import css from '../Headline/Headline.module.css';
-import {useDispatch} from "react-redux";
 import {userActions} from "../../redux";
 
-const OrderCreateForm = ({setOpen}) => {
+const UserCreateForm = ({setOpen}) => {
 
-    const {register, handleSubmit, setValue} = useForm({mode: 'all'})
+    const {register, handleSubmit} = useForm({mode: 'all'})
     const dispatch = useDispatch();
 
     const create = (data) => {
-        console.log(data)
-
         dispatch(userActions.createUser(data))
         setOpen(false)
-
     }
 
     return (
@@ -36,4 +33,4 @@ const OrderCreateForm = ({setOpen}) => {
 
     )
 }
-export {OrderCreateForm}
+export {UserCreateForm}

@@ -1,6 +1,4 @@
-
-const UserStatistics = ({ id, userStatistic }) => {
-
+const UserStatistics = ({ user, userStatistic }) => {
 
     const statistics = userStatistic;
 
@@ -8,7 +6,7 @@ const UserStatistics = ({ id, userStatistic }) => {
         return <div>Loading...</div>;
     }
 
-    const userData = statistics[id];
+    const userData = statistics[user.id];
 
     return (
         <div>

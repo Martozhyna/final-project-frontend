@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createBrowserHistory} from "history";
 
 import {usersService} from "../../services";
-import {createBrowserHistory} from "history";
 
 const initialState = {
     user: [],

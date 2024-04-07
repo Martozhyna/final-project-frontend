@@ -1,9 +1,9 @@
 import dateformat from "dateformat";
+import {useDispatch} from "react-redux";
 
 import css from './User.module.css';
 import style from '../Headline/Headline.module.css'
 import {UserStatistics} from "../UserStatistics/UserStatistics";
-import {useDispatch} from "react-redux";
 import {userActions, userActions as usersActions} from "../../redux";
 import {usersService} from "../../services";
 
@@ -19,12 +19,13 @@ const User = ({ user, userStatistic }) => {
     }
     
     const activate = async () => {
-        await usersService.getActivate(user.id)
+        const {data} = await usersService.getActivate(user.id)
+        await navigator.clipboard.writeText(`${window.location.origin}/activate/${data.token}`)
     }
 
     const recovery = async () => {
-        await usersService.getRecoverPasswordToken(user.email)
-
+        const {data} = await usersService.getRecoverPasswordToken(user.email)
+        await navigator.clipboard.writeText(`${window.location.origin}/recovery-password/${data.token}`)
     }
 
     return (
@@ -39,11 +40,11 @@ const User = ({ user, userStatistic }) => {
             </div>
 
             <div>
-                <UserStatistics id={user.id} userStatistic={userStatistic} />
+                <UserStatistics user={user} userStatistic={userStatistic} />
             </div>
 
             <div className={style.btns}>
-                <button className={style.btn} onClick={user.is_active ? recovery : activate}>{user.is_active ? 'Recovery password' : 'Activate'}</button>
+                <button className={style.btn} onClick={user.last_login ? recovery : activate}>{user.last_login ? 'Recovery password' : 'Activate'}</button>
                 <button className={style.btn} onClick={banUser}>Ban</button>
                 <button className={style.btn} onClick={unbanUser}>Unban</button>
             </div>

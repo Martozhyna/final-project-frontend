@@ -1,8 +1,9 @@
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {activateUserValidator} from "../../validators/activateUserValidator";
 import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
+
+import {activateUserValidator} from "../../validators/activateUserValidator";
 import {userActions} from "../../redux";
 import css from "../LoginPage/LodinPage.module.css";
 

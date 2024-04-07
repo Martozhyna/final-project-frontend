@@ -5,7 +5,6 @@ const loginValidator = Joi.object({
     password: Joi.string().required()
 })
 
-
 export {
     loginValidator
 }

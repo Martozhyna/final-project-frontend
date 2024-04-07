@@ -1,10 +1,12 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
+import ReactPaginate from "react-paginate";
+
 import {userActions} from "../../redux";
 import {User} from "../User/User";
 import css from "../Paginate/Paginate.module.css";
-import ReactPaginate from "react-paginate";
+
 
 const Users = () => {
 

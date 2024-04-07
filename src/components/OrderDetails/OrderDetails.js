@@ -7,9 +7,6 @@ import {Comments} from "../Comments/Comments";
 import {orderActions} from "../../redux";
 import {ModalConstruction} from "../ModalConstruction/ModalConstruction";
 
-
-
-
 const OrderDetails = ({order}) => {
 
     const {register, handleSubmit, reset} = useForm();

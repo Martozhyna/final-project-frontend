@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect} from "react";
+import queryString from "query-string";
+import {useLocation} from "react-router-dom";
 
 import css from './FilterOption.module.css';
 import { userActions } from "../../redux";
-import {useLocation} from "react-router-dom";
-import queryString from "query-string";
 import {ordersService} from "../../services";
 
 const FilterOption = ({ setSearch, reset, handleReset, setShowMyOrders, showMyOrders }) => {

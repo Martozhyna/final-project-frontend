@@ -3,15 +3,13 @@ import {useState} from "react";
 import Modal from 'react-modal';
 
 import css from "../../components/Headline/Headline.module.css";
-import {OrderCreateForm, OrderStatistics, Users} from "../../components";
-
+import {UserCreateForm, OrderStatistics, Users} from "../../components";
 
 Modal.setAppElement('#root')
 
 const AdminPage = () => {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false)
-
 
     return (
         <div>
@@ -32,7 +30,7 @@ const AdminPage = () => {
                    overlayClassName={css.overlay}
                    contentLabel="Example ModalConstruction">
                 <div >
-                    <OrderCreateForm setOpen={setOpen}/>
+                    <UserCreateForm setOpen={setOpen}/>
 
 
                 </div>
@@ -42,10 +40,6 @@ const AdminPage = () => {
             </Modal>
             <Users/>
         </div>
-
-
-
-
     )
 }
 export {AdminPage}
