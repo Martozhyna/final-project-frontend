@@ -83,10 +83,11 @@ const unbanUser = createAsyncThunk(
 
 const createUser = createAsyncThunk(
     "userSlice/createUser",
-    async (user, { rejectWithValue}) => {
+    async (user, { rejectWithValue, dispatch}) => {
         try {
 
             const { data } = await usersService.createUser(user);
+            await dispatch(userActions.getUserStatistic());
             return data;
 
         }
