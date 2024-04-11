@@ -11,9 +11,10 @@ import css from "../Paginate/Paginate.module.css";
 const Users = () => {
 
     const dispatch = useDispatch();
-    const { users } = useSelector((state) => state.user);
+    const { users, errors } = useSelector((state) => state.user);
     const [query, setQuery] = useSearchParams({ page: "1" });
     const { userStatistic, total_pages } = useSelector((state) => state.user);
+
     useEffect(() => {
         if (!userStatistic){
             dispatch(userActions.getUserStatistic());
@@ -41,7 +42,7 @@ const Users = () => {
     return (
         <div>
             {
-              users &&  users.map((user) => (<User user={user} key={user.id} userStatistic={userStatistic}/>))
+              users &&  users.map((user) => (<User user={user} key={user.id} userStatistic={userStatistic} errors={errors}/>))
             }
             <div className={css.block}>
                 <ReactPaginate

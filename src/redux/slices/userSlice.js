@@ -8,7 +8,9 @@ const initialState = {
     users: [],
     total_pages: null,
     userStatistic: null,
-    page: 1
+    page: 1,
+    errors: null,
+    loading: false,
 
 };
 
@@ -148,9 +150,17 @@ const userSlice = createSlice({
                 const user = state.users.find(user => user.id === action.payload.id);
                 user.is_active = action.payload.is_active;
             })
+            .addCase(banUser.rejected, (state, action) => {
+                state.loading = false;
+                state.errors = action.payload;
+            })
             .addCase(unbanUser.fulfilled, (state, action) => {
                 const user = state.users.find(user => user.id === action.payload.id);
                 user.is_active = action.payload.is_active;
+            })
+            .addCase(unbanUser.rejected, (state, action) => {
+                state.loading = false;
+                state.errors = action.payload;
             })
             .addCase(createUser.fulfilled, (state, action) => {
                 state.users.unshift(action.payload)

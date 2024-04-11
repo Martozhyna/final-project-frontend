@@ -8,7 +8,7 @@ import { userActions } from "../../redux";
 import {activateUserValidator} from "../../validators/activateUserValidator";
 
 const ActivateUserPage = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm({
         mode: "all", resolver: yupResolver(activateUserValidator)
     });
     const navigate = useNavigate();
@@ -36,10 +36,10 @@ const ActivateUserPage = () => {
                         <h3 className={css.text}>Confirm Password</h3>
                     </div>
                     <input className={css.input} type="text" placeholder={'Confirm'} {...register('confirm')} />
-                    {errors.password && <div>{errors.password.message}</div>}
+                    {errors.confirm && <div>{errors.confirm.message}</div>}
                 </div>
                 <div className={css.box}>
-                    <button className={css.btn}>ACTIVATE</button>
+                    <button className={css.btn} disabled={!isValid}>ACTIVATE</button>
                 </div>
             </div>
         </form>
