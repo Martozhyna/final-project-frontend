@@ -21,6 +21,7 @@ const LoginPage = () => {
             await authService.login(userCredential);
             navigate('/orders')
         } catch (e) {
+
             if (e.response.status === 401) {
                 setError('немає акаунта з такими даними')
             }

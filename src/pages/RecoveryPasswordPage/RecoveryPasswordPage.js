@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {useNavigate, useParams} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
 import {activateUserValidator} from "../../validators/activateUserValidator";
 import {userActions} from "../../redux";
@@ -11,14 +11,13 @@ const RecoveryPasswordPage = () => {
     const {register, handleSubmit, formState: {errors, isValid}} = useForm({
         mode: "all", resolver: yupResolver(activateUserValidator)
     });
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const {token} = useParams();
+    const { errors: er } = useSelector((state) => state.user);
 
     const activate = async (data) => {
         const password = data.password
         await dispatch(userActions.recoveryPassword({token: token, password: password}));
-        navigate('/login')
     }
 
     return (
@@ -39,6 +38,7 @@ const RecoveryPasswordPage = () => {
                     {errors.confirm && <div>{errors.confirm.message}</div>}
                 </div>
                 <div className={css.box}>
+                    {er && <div className={css.text}>{er.details}</div>}
                     <button className={css.btn} disabled={!isValid}>ACTIVATE</button>
                 </div>
             </div>

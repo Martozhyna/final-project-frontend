@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {createBrowserHistory} from "history";
 
 import {usersService} from "../../services";
+import {useNavigate} from "react-router-dom";
 
 const initialState = {
     user: [],
@@ -166,15 +166,18 @@ const userSlice = createSlice({
                 state.users.unshift(action.payload)
             })
             .addCase(activateUser.fulfilled, (state, action) => {
-                const history = createBrowserHistory();
-                history.replace("/login");
+                const navigate = useNavigate();
+                navigate('/login');
             })
             .addCase(activateUser.rejected, (state, action) => {
-                state.error = action.payload;
+                state.errors = action.payload;
             })
             .addCase(recoveryPassword.fulfilled, (state, action) => {
-                const history = createBrowserHistory();
-                history.replace("/login");
+                const navigate = useNavigate();
+                navigate('/login');
+            })
+            .addCase(recoveryPassword.rejected, (state, action) => {
+                state.errors = action.payload;
             })
 
 
