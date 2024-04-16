@@ -15,6 +15,7 @@ const RecoveryPasswordPage = () => {
     const {token} = useParams();
     const { errors: er } = useSelector((state) => state.user);
 
+
     const activate = async (data) => {
         const password = data.password
         await dispatch(userActions.recoveryPassword({token: token, password: password}));

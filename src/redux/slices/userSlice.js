@@ -42,10 +42,8 @@ const getUserStatistic = createAsyncThunk(
     "userSlice/getUserStatistic",
     async (_, { rejectWithValue, getState }) => {
         try {
-
                 const { data } = await usersService.getOrderStatistics();
                 return data;
-
             }
         catch (e) {
             return rejectWithValue(e.response.data);
@@ -57,10 +55,8 @@ const banUser = createAsyncThunk(
     "userSlice/banUser",
     async (id, { rejectWithValue, getState }) => {
         try {
-
             const { data } = await usersService.banUser(id);
             return data;
-
         }
         catch (e) {
             return rejectWithValue(e.response.data);
@@ -72,10 +68,8 @@ const unbanUser = createAsyncThunk(
     "userSlice/unbanUser",
     async (id, { rejectWithValue, getState }) => {
         try {
-
             const { data } = await usersService.unbanUser(id);
             return data;
-
         }
         catch (e) {
             return rejectWithValue(e.response.data);
@@ -87,11 +81,9 @@ const createUser = createAsyncThunk(
     "userSlice/createUser",
     async (user, { rejectWithValue, dispatch}) => {
         try {
-
             const { data } = await usersService.createUser(user);
             await dispatch(userActions.getUserStatistic());
             return data;
-
         }
         catch (e) {
             return rejectWithValue(e.response.data);
@@ -122,7 +114,6 @@ const recoveryPassword = createAsyncThunk(
             return data;
         }
         catch (e) {
-
             return rejectWithValue(e.response.data);
         }
     }
@@ -164,6 +155,10 @@ const userSlice = createSlice({
             })
             .addCase(createUser.fulfilled, (state, action) => {
                 state.users.unshift(action.payload)
+            })
+            .addCase(createUser.rejected, (state, action) => {
+                state.errors = action.payload
+                console.log(state.errors)
             })
             .addCase(activateUser.fulfilled, (state, action) => {
                 const navigate = useNavigate();

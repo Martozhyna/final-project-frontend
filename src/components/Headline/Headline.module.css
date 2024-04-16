@@ -109,3 +109,11 @@
     background: white;
     color: #4E8397;
 }
+
+.msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Snell Roundhand, cursive;
+    font-size: 14px;
+}
