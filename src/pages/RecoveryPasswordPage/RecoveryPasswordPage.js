@@ -3,7 +3,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
-import {activateUserValidator} from "../../validators/activateUserValidator";
+import {activateUserValidator} from "../../validators";
 import {userActions} from "../../redux";
 import css from "../LoginPage/LodinPage.module.css";
 
