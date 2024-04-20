@@ -27,14 +27,14 @@ const ActivateUserPage = () => {
                     <div>
                         <h3 className={css.text}>Password</h3>
                     </div>
-                    <input className={css.input} type="text" placeholder={'Password'} {...register('password')} />
+                    <input className={css.input} type="password" placeholder={'Password'} {...register('password')} />
                     {errors.password && <div>{errors.password.message}</div>}
                 </div>
                 <div className={css.box}>
                     <div>
                         <h3 className={css.text}>Confirm Password</h3>
                     </div>
-                    <input className={css.input} type="text" placeholder={'Confirm'} {...register('confirm')} />
+                    <input className={css.input} type="password" placeholder={'Confirm'} {...register('confirm')} />
                     {errors.confirm && <div>{errors.confirm.message}</div>}
                 </div>
                 <div className={css.box}>
