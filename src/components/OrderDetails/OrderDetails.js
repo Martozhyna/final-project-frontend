@@ -1,5 +1,5 @@
 import {useForm} from "react-hook-form";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 
 import css from './OrderDetails.module.css';
@@ -9,10 +9,11 @@ import {ModalConstruction} from "../ModalConstruction/ModalConstruction";
 
 const OrderDetails = ({order}) => {
 
-    const {register, handleSubmit, reset} = useForm();
+    const {register, handleSubmit, reset, formState:{isValid}} = useForm();
     const dispatch = useDispatch();
     const [comments, setComments] = useState(order.comments)
     const [error, setError] = useState(null);
+    const {user} = useSelector((state) => state.user);
 
     const submit = async (comment) => {
         const newComment = await dispatch(orderActions.createComment({id: order.id, comment: comment}));
@@ -43,14 +44,14 @@ const OrderDetails = ({order}) => {
                     <form onSubmit={handleSubmit(submit)}>
                         <div>
                             <input className={css.input} type="text" placeholder={'Comment'} {...register('comment')}/>
-                            <button className={css.btn}>Submit</button>
+                            <button className={css.btn} disabled={user.surname !== order.manager}>Submit</button>
                         </div>
                         <div>
                         </div>
                     </form>
 
                     <div>
-                        <ModalConstruction order={order}/>
+                        <ModalConstruction order={order} user={user}/>
                     </div>
 
                 </div>

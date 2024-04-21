@@ -7,7 +7,7 @@ import {ModalForm} from "../ModalForm/ModalForm";
 
 Modal.setAppElement('#root')
 
-const ModalConstruction = ({order}) => {
+const ModalConstruction = ({order, user}) => {
 
     const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -26,7 +26,7 @@ const ModalConstruction = ({order}) => {
 
     return (
         <div>
-            <button className={css.btn} onClick={openModal}>Edit</button>
+            <button className={css.btn} onClick={openModal} disabled={user.surname !== order.manager}>Edit</button>
 
             <Modal isOpen={modalIsOpen}
                    onAfterOpen={afterOpenModal}
