@@ -9,7 +9,7 @@ import {ModalConstruction} from "../ModalConstruction/ModalConstruction";
 
 const OrderDetails = ({order}) => {
 
-    const {register, handleSubmit, reset, formState:{isValid}} = useForm();
+    const {register, handleSubmit, reset} = useForm();
     const dispatch = useDispatch();
     const [comments, setComments] = useState(order.comments)
     const [error, setError] = useState(null);

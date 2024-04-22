@@ -2,11 +2,17 @@ import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 import css from './Headline.module.css';
+import {authService} from "../../services";
 
 
 const Headline = () => {
     const {user} = useSelector((state) => state.user);
     const navigate = useNavigate();
+
+    const exit = () => {
+        authService.deleteTokens();
+        navigate('/login')
+    }
 
     return (
         <div className={css.main}>
@@ -19,7 +25,7 @@ const Headline = () => {
                     <button className={css.btn} onClick={() => navigate("/admin")}>Admin</button> :
                     <div className={css.surname}>{user.surname}</div>}
 
-                <button className={css.btn} onClick={() => navigate("/login")}>Exit</button>
+                <button className={css.btn} onClick={exit}>Exit</button>
             </div>
         </div>
     )
