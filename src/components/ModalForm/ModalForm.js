@@ -150,12 +150,12 @@ const ModalForm = ({order, setIsOpen}) => {
                                              defaultLabel={'make your choice'}/>
                     </div>
                     <div>
-                        <ModalFormWithChoice name={'courseFormat'} label={'course format'}
+                        <ModalFormWithChoice name={'course_format'} label={'course format'}
                                              register={register} options={['static', 'online']}
                                              defaultLabel={'make your choice'}/>
                     </div>
                     <div>
-                        <ModalFormWithChoice name={'courseType'} label={'course type'}
+                        <ModalFormWithChoice name={'course_type'} label={'course type'}
                                              register={register}
                                              options={['pro', 'minimal', 'premium', 'incubator', 'vip']}
                                              defaultLabel={'make your choice'}/>
