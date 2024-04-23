@@ -44,7 +44,7 @@ const OrderDetails = ({order}) => {
                     <form onSubmit={handleSubmit(submit)}>
                         <div>
                             <input className={css.input} type="text" placeholder={'Comment'} {...register('comment')}/>
-                            <button className={css.btn} disabled={user.surname !== order.manager}>Submit</button>
+                            <button className={css.btn} disabled={order.manager && user.surname !== order.manager}>Submit</button>
                         </div>
                         <div>
                         </div>

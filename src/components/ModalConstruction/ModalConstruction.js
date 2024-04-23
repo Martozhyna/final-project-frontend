@@ -26,7 +26,7 @@ const ModalConstruction = ({order, user}) => {
 
     return (
         <div>
-            <button className={css.btn} onClick={openModal} disabled={user.surname !== order.manager}>Edit</button>
+            <button className={css.btn} onClick={openModal} disabled={order.manager && user.surname !== order.manager}>Edit</button>
 
             <Modal isOpen={modalIsOpen}
                    onAfterOpen={afterOpenModal}

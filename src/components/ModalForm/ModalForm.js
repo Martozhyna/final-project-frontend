@@ -29,7 +29,7 @@ const ModalForm = ({order, setIsOpen}) => {
             course: order.course,
             course_format: order.course_format,
             course_type: order.course_type,
-            status: order.status,
+            status: order.manager === null ? 'In work' : order.status,
             sum: order.sum,
             alreadyPaid: order.alreadyPaid,
             group: order.group ? order.group.title : "",
@@ -75,6 +75,7 @@ const ModalForm = ({order, setIsOpen}) => {
                 Object.entries(data).filter(([key, value]) => value !== "")
             );
             dispatch(orderActions.updateById({ id: order.id, data: cleanedData }));
+
             setIsOpen(false)
         }
         else {
