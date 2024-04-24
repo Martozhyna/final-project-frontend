@@ -3,7 +3,7 @@ import dateformat from "dateformat";
 import css from "./Order.module.css";
 import { OrderDetails } from "../OrderDetails/OrderDetails";
 
-const Order = ({ order, isOpen, toggleOrder }) => {
+const Order = ({ order, isOpen, toggleOrder}) => {
     const handleClick = () => {
         toggleOrder(order.id);
     };
@@ -33,7 +33,7 @@ const Order = ({ order, isOpen, toggleOrder }) => {
             {isOpen && (
                 <tr className={`${!isOpen ? css.collapsed : css.task} `}>
                     <td colSpan={15}>
-                        <OrderDetails order={order} />
+                        <OrderDetails order={order}/>
                     </td>
                 </tr>
             )}

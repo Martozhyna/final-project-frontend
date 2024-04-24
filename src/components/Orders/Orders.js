@@ -39,6 +39,7 @@ const Orders = ({ search }) => {
 
     const toggleOrder = (orderId) => {
         setOpenedOrderId((prevId) => (prevId === orderId ? null : orderId));
+
     };
 
     return (
@@ -71,6 +72,7 @@ const Orders = ({ search }) => {
                             key={order.id}
                             isOpen={order.id === openedOrderId}
                             toggleOrder={toggleOrder}
+
                         />
                     ))}
                     </tbody>
