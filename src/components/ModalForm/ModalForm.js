@@ -13,9 +13,12 @@ const ModalForm = ({order, setIsOpen}) => {
     const { groups } = useSelector((state) => state.group);
     const dispatch = useDispatch();
 
+
     useEffect(() => {
         dispatch(groupAction.getAll());
     }, [dispatch])
+
+    console.log(order.manager === '')
 
 
     const {register, handleSubmit, setValue} = useForm({
@@ -29,7 +32,7 @@ const ModalForm = ({order, setIsOpen}) => {
             course: order.course,
             course_format: order.course_format,
             course_type: order.course_type,
-            status: order.manager === null ? 'In work' : order.status,
+            status: (order.manager === null || order.manager === '') ? 'In work' : order.status,
             sum: order.sum,
             alreadyPaid: order.alreadyPaid,
             group: order.group ? order.group.title : "",
@@ -74,8 +77,11 @@ const ModalForm = ({order, setIsOpen}) => {
             const cleanedData = Object.fromEntries(
                 Object.entries(data).filter(([key, value]) => value !== "")
             );
-            dispatch(orderActions.updateById({ id: order.id, data: cleanedData }));
+            if (cleanedData['statuses'] === 'New'){
+                order.manager = null
+            }
 
+            dispatch(orderActions.updateById({ id: order.id, data: cleanedData }));
             setIsOpen(false)
         }
         else {
