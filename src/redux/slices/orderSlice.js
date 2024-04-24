@@ -116,6 +116,7 @@ const orderSlice = createSlice({
                     if (order.id === action.payload.order_id){
                         return {
                             ...order,
+                            comments: [ action.payload, ...order.comments ],
                             status: 'In work',
                             manager: action.payload.order
                         };
