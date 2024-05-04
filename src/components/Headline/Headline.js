@@ -21,7 +21,7 @@ const Headline = () => {
                      alt="logo"/>
             </div>
             <div className={css.btnContainer}>
-                {user.surname === "Admin" ?
+                {user.is_superuser ?
                     <button className={css.btn} onClick={() => navigate("/admin")}>Admin</button> :
                     <div className={css.surname}>{user.surname}</div>}
 
